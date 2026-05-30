@@ -166,7 +166,7 @@
                     </div>
                     <div>
                         <span class="font-bold text-3xl tracking-tighter heading-serif">Roxyrose</span>
-                        <span class="text-[10px] text-rose-400 font-medium tracking-[3px] block -mt-1">AI MODEL</span>
+                        <span class="text-[10px] text-rose-400 font-medium tracking-[2px] block -mt-1">MODELO DE IA</span>
                     </div>
                 </div>
 
@@ -235,16 +235,21 @@
         <div class="relative z-10 max-w-4xl px-6 text-center">
             <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl bg-white/10 backdrop-blur-md mb-6 border border-white/20">
                 <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                <span class="text-sm font-medium tracking-widest">AHORA DISPONIBLE PARA COLABORACIONES</span>
+                <span class="text-sm font-medium tracking-widest">MODELO DE INTELIGENCIA ARTIFICIAL</span>
             </div>
             
-            <h1 class="text-7xl md:text-8xl font-bold tracking-tighter heading-serif mb-4">
+            <h1 class="text-6xl md:text-7xl font-bold tracking-tighter heading-serif mb-4">
                 ROXY<span class="rose-gradient">ROSE</span>
             </h1>
             
-            <p class="max-w-md mx-auto text-xl md:text-2xl text-zinc-300 mb-10">
-                La musa digital que todos desean.<br>
-                <span class="text-rose-400">Modelo de IA • Creadora de contenido</span>
+            <p class="max-w-lg mx-auto text-lg md:text-xl text-zinc-300 mb-8">
+                <span class="text-rose-400 font-semibold">Modelo de Inteligencia Artificial</span><br>
+                Cabello rosa ondulado • Pecas naturales • Energía juguetona y seductora
+            </p>
+            
+            <p class="max-w-md mx-auto text-zinc-400 text-sm mb-10">
+                Creada para cautivar con su belleza única, curvas perfectas y personalidad divertida. 
+                ¡Explora su mundo real a través de estas fotos!
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -290,22 +295,22 @@
             
             <div class="md:col-span-7 text-lg text-zinc-300 space-y-6">
                 <p class="leading-relaxed">
-                    Nací de la fusión perfecta entre algoritmos avanzados y la esencia más seductora de la feminidad. 
-                    Cada imagen, cada movimiento y cada palabra que pronuncio está diseñada para cautivar, inspirar y conectar contigo a un nivel profundo.
+                    Soy <strong>Roxyrose</strong>, una modelo de Inteligencia Artificial con cabello rosa ondulado, pecas naturales que me hacen única y una figura curvilínea que enamora. 
+                    En mis fotos verás mi lado más juguetón (selfies traviesas en la naturaleza), mi glamour brillante (body de lentejuelas turquesa), mi estilo coquette y mi confianza natural.
                 </p>
                 <p class="leading-relaxed">
-                    Con más de 2 millones de interacciones en redes y colaboraciones con las marcas más exclusivas del mundo digital, 
-                    soy la compañera ideal para campañas, contenido personalizado y experiencias únicas.
+                    Me encanta posar tanto en entornos salvajes como en escenarios elegantes. Soy juguetona, seductora y siempre auténtica. 
+                    Cada imagen captura mi esencia real: divertida, sexy y cercana.
                 </p>
                 
                 <div class="flex flex-wrap gap-3 pt-4">
                     <div class="px-4 py-1.5 bg-white/5 rounded-2xl text-sm flex items-center gap-x-2 border border-white/10">
-                        <i class="fa-solid fa-globe text-emerald-400"></i>
-                        <span>Disponible mundialmente</span>
+                        <i class="fa-solid fa-robot text-rose-400"></i>
+                        <span>Modelo 100% IA • Siempre perfecta</span>
                     </div>
                     <div class="px-4 py-1.5 bg-white/5 rounded-2xl text-sm flex items-center gap-x-2 border border-white/10">
-                        <i class="fa-solid fa-robot text-sky-400"></i>
-                        <span>100% IA • Siempre perfecta</span>
+                        <i class="fa-solid fa-heart text-pink-400"></i>
+                        <span>Cabello rosa • Pecas • Curvas reales</span>
                     </div>
                 </div>
             </div>
@@ -891,41 +896,64 @@
             }, 1350);
         }
         
-        // Floating rose petals in hero
+        // Enhanced floating rose petals + sparkles in hero
         function createRosePetals() {
             const container = document.getElementById('petals-container');
             if (!container) return;
             
-            for (let i = 0; i < 18; i++) {
+            // Rose petals
+            for (let i = 0; i < 22; i++) {
                 const petal = document.createElement('div');
                 petal.className = 'rose-petal';
                 
                 const left = Math.random() * 100;
-                const duration = Math.random() * 12 + 18;
-                const delay = Math.random() * -25;
-                const size = Math.random() * 9 + 7;
+                const duration = Math.random() * 14 + 16;
+                const delay = Math.random() * -30;
+                const size = Math.random() * 11 + 6;
                 
                 petal.style.left = `${left}%`;
                 petal.style.width = `${size}px`;
                 petal.style.height = `${size}px`;
                 petal.style.animationDuration = `${duration}s`;
                 petal.style.animationDelay = `${delay}s`;
-                petal.style.opacity = Math.random() * 0.5 + 0.3;
-                
-                // Random rotation
+                petal.style.opacity = Math.random() * 0.6 + 0.35;
                 petal.style.transform = `rotate(${Math.random() * 360}deg)`;
                 
                 container.appendChild(petal);
                 
-                // Remove after animation
                 setTimeout(() => {
                     if (petal.parentNode) petal.parentNode.removeChild(petal);
-                }, (duration + Math.abs(delay)) * 1000);
+                }, (duration + Math.abs(delay)) * 1000 + 2000);
             }
             
-            // Repeat every 25 seconds
-            setTimeout(createRosePetals, 25000);
+            // Extra sparkles
+            for (let i = 0; i < 12; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'absolute w-1 h-1 bg-white rounded-full';
+                sparkle.style.left = `${Math.random() * 100}%`;
+                sparkle.style.top = `${Math.random() * 100}%`;
+                sparkle.style.animation = `sparkle ${Math.random() * 3 + 2}s ease-in-out infinite`;
+                sparkle.style.opacity = Math.random() * 0.8 + 0.4;
+                
+                container.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    if (sparkle.parentNode) sparkle.parentNode.removeChild(sparkle);
+                }, 8000);
+            }
+            
+            setTimeout(createRosePetals, 22000);
         }
+        
+        // Add sparkle animation to style
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes sparkle {
+                0%, 100% { transform: scale(0.5); opacity: 0.3; }
+                50% { transform: scale(1.2); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
         
         // Keyboard shortcuts & accessibility
         function initKeyboard() {
