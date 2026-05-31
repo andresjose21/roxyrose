@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roxyrose • Modelo Oficial</title>
+
+    <!-- Meta para compartir en redes (Meta/Facebook/Instagram) - SEGURO -->
+    <meta property="og:title" content="Roxyrose • Modelo Oficial">
+    <meta property="og:description" content="Explora el portafolio visual de Roxyrose, modelo y creadora de contenido. Sesiones exclusivas, colaboraciones y contenido premium.">
+    <meta property="og:image" content="https://roxyrosefy.github.io/mysocials/assets/images/grok_image_1780159867735.jpg">
+    <meta property="og:url" content="https://roxyrosefy.github.io/mysocials">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Roxyrose">
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Roxyrose • Modelo Oficial">
+    <meta name="twitter:description" content="Portafolio visual de Roxyrose. Sesiones exclusivas y contenido premium.">
+    <meta name="twitter:image" content="https://roxyrosefy.github.io/mysocials/assets/images/grok_image_1780159867735.jpg">
+
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Portafolio oficial de Roxyrose, modelo y creadora de contenido. Descubre sesiones exclusivas y colaboraciones.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&display=swap');
+        body { font-family: 'Inter', system_ui, sans-serif; }
+        .heading-serif { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; letter-spacing: -0.025em; }
+        .rose-gradient { background: linear-gradient(135deg, #b76e79, #f43f5e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 8500; pointer-events: none; }
+
+        .social-circle { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.15); transition: transform 0.3s, border-color 0.3s; }
+        .social-circle:hover { transform: scale(1.2); border-color: #f43f5e; }
+        .social-circle.instagram { background: linear-gradient(135deg, #f43f5e, #c026d3); }
+        .social-circle.facebook { background: #1877f2; }
+        .social-circle.paypal { background: #00457c; }
+        .social-circle.tiktok { background: #000000; }
+
+        .hero-title { font-size: clamp(52px, 11vw, 105px); line-height: 0.92; }
+
+        .thumbnail { width: 68px; height: 68px; border-radius: 12px; overflow: hidden; border: 2px solid transparent; transition: all 0.3s ease; cursor: pointer; flex-shrink: 0; }
+        .thumbnail.active { border-color: #f43f5e; transform: scale(1.05); }
+        .thumbnail img { width: 100%; height: 100%; object-fit: cover; }
+
+        @media (min-width: 768px) { .thumbnail { width: 82px; height: 82px; } }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white">
+
+<canvas id="particles-canvas"></canvas>
+
+<nav class="fixed top-0 left-0 right-0 z-[9800] bg-zinc-950/90 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-5 flex justify-between items-center h-20">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-rose-400 to-pink-600 rounded-2xl flex items-center justify-center">
+                <i class="fa-solid fa-rose text-white text-2xl"></i>
+            </div>
+            <div>
+                <span class="font-bold text-2xl tracking-tighter heading-serif">Roxyrose</span>
+                <span class="text-[10px] text-rose-400 font-medium tracking-[2px] block -mt-0.5">MODELO • INFLUENCER</span>
+            </div>
+        </div>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+            <a href="#galeria" class="hover:text-rose-400 transition">Galería</a>
+            <a href="#servicios" class="hover:text-rose-400 transition">Servicios</a>
+            <a href="#contacto" class="hover:text-rose-400 transition">Contacto</a>
+        </div>
+        <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})" class="px-5 py-2.5 bg-white text-zinc-950 font-semibold rounded-3xl text-sm hover:bg-zinc-100 transition">
+            Book Now
+        </button>
+    </div>
+</nav>
+
+<header class="min-h-[100dvh] flex items-center justify-center pt-20 relative overflow-hidden">
+    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0" poster="assets/images/grok_image_1780159867735.jpg">
+        <source src="assets/images/VID_20260503_000135.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/82 z-10"></div>
+
+    <div class="relative z-20 max-w-3xl mx-auto px-6 text-center md:text-left">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-3xl bg-white/10 backdrop-blur-md mb-6 border border-white/20">
+            <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+            <span class="text-sm font-medium tracking-[1.5px]">AHORA DISPONIBLE PARA COLABORACIONES</span>
+        </div>
+
+        <h1 class="hero-title heading-serif mb-4">
+            ROXY<span class="rose-gradient">ROSE</span>
+        </h1>
+
+        <div class="flex gap-3 mb-7 justify-center md:justify-start">
+            <a href="https://www.instagram.com/roxyrose_fy" target="_blank" class="social-circle instagram"><i class="fa-brands fa-instagram text-white text-xl"></i></a>
+            <a href="https://www.facebook.com/roxyrose.fy" target="_blank" class="social-circle facebook"><i class="fa-brands fa-facebook-f text-white text-xl"></i></a>
+            <a href="https://paypal.me/roxyrosefy" target="_blank" class="social-circle paypal"><i class="fa-brands fa-paypal text-white text-xl"></i></a>
+            <a href="https://www.tiktok.com/@roxyrose_fy" target="_blank" class="social-circle tiktok"><i class="fa-brands fa-tiktok text-white text-xl"></i></a>
+        </div>
+
+        <p class="text-rose-400 font-semibold text-xl md:text-2xl mb-3">Energía juguetona y seductora</p>
+        <p class="text-zinc-400 max-w-md text-sm md:text-base mb-8">Modelo y creadora de contenido que ama posar en la naturaleza, brillar con glamour y compartir su mundo contigo.</p>
+
+        <div class="flex flex-col sm:flex-row gap-3 max-w-[320px] mx-auto md:mx-0">
+            <button onclick="document.getElementById('galeria').scrollIntoView({behavior:'smooth'})" class="flex-1 py-3.5 bg-white text-zinc-950 font-semibold rounded-3xl flex items-center justify-center gap-2 hover:bg-zinc-100 transition">
+                Explorar Galería <i class="fa-solid fa-images"></i>
+            </button>
+            <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})" class="flex-1 py-3.5 border border-white/40 hover:bg-white/5 font-semibold rounded-3xl transition">
+                Conectar
+            </button>
+        </div>
+    </div>
+</header>
+
+<section id="galeria" class="max-w-6xl mx-auto px-5 py-20">
+    <div class="text-center mb-10">
+        <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]">PORTAFOLIO VISUAL</span>
+        <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-2">Mi mundo en imágenes</h2>
+    </div>
+
+    <div class="relative max-w-[620px] md:max-w-3xl lg:max-w-4xl mx-auto mb-6">
+        <div id="carousel-container" class="relative h-[520px] md:h-[620px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+            <div id="carousel-slides" class="flex h-full transition-transform duration-700 ease-out"></div>
+        </div>
+    </div>
+
+    <div class="flex gap-3 overflow-x-auto pb-4 max-w-[620px] md:max-w-3xl lg:max-w-4xl mx-auto hide-scrollbar">
+        <div id="thumbnails" class="flex gap-3"></div>
+    </div>
+</section>
+
+<section id="servicios" class="bg-zinc-900 py-20 border-y border-white/10">
+    <div class="max-w-6xl mx-auto px-5">
+        <div class="text-center mb-12">
+            <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]">EXPERIENCIAS EXCLUSIVAS</span>
+            <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-2">¿Qué puedo hacer por ti?</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            <div class="bg-zinc-950 p-7 rounded-3xl border border-white/10">
+                <i class="fa-solid fa-camera text-rose-400 text-3xl mb-4"></i>
+                <h4 class="font-semibold text-xl mb-2">Sesiones de Fotos Privadas</h4>
+                <p class="text-zinc-400">Shoots exclusivos en locaciones increíbles con edición premium.</p>
+            </div>
+            <div class="bg-zinc-950 p-7 rounded-3xl border border-white/10">
+                <i class="fa-solid fa-video text-rose-400 text-3xl mb-4"></i>
+                <h4 class="font-semibold text-xl mb-2">Contenido Personalizado</h4>
+                <p class="text-zinc-400">Videos y fotos hechos a tu medida. ¡Dime tu fantasía!</p>
+            </div>
+            <div class="bg-zinc-950 p-7 rounded-3xl border border-white/10">
+                <i class="fa-solid fa-globe text-rose-400 text-3xl mb-4"></i>
+                <h4 class="font-semibold text-xl mb-2">Colaboraciones & Eventos</h4>
+                <p class="text-zinc-400">Apariciones en eventos, campañas y brand deals.</p>
+            </div>
+            <div class="bg-zinc-950 p-7 rounded-3xl border border-white/10">
+                <i class="fa-solid fa-heart text-rose-400 text-3xl mb-4"></i>
+                <h4 class="font-semibold text-xl mb-2">Experiencias VIP</h4>
+                <p class="text-zinc-400">Acceso prioritario, chats privados y contenido behind-the-scenes.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contacto" class="max-w-3xl mx-auto px-5 py-20">
+    <div class="text-center mb-10">
+        <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]">HABLEMOS</span>
+        <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-2">¿Lista para crear algo increíble?</h2>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('¡Mensaje enviado! Te responderé pronto 💌'); this.reset();" class="space-y-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <input type="text" placeholder="Tu nombre" class="w-full bg-zinc-900 border border-white/20 rounded-2xl px-5 py-3.5 focus:outline-none focus:border-rose-400">
+            <input type="email" placeholder="Tu email" class="w-full bg-zinc-900 border border-white/20 rounded-2xl px-5 py-3.5 focus:outline-none focus:border-rose-400">
+        </div>
+        <textarea placeholder="Cuéntame más..." rows="5" class="w-full bg-zinc-900 border border-white/20 rounded-3xl px-5 py-4 focus:outline-none focus:border-rose-400 resize-y"></textarea>
+        <button type="submit" class="w-full py-4 bg-gradient-to-r from-rose-500 to-pink-600 font-semibold text-lg rounded-3xl hover:brightness-110 transition">
+            Enviar mensaje
+        </button>
+    </form>
+</section>
+
+<footer class="bg-black border-t border-white/10 py-12 text-center text-sm text-zinc-500">
+    <div class="max-w-4xl mx-auto px-5">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+            <div>
+                © 2026 Roxyrose • Todos los derechos reservados
+            </div>
+            <div class="flex gap-6 text-xs">
+                <a href="politica-de-privacidad.html" class="hover:text-white transition">Política de Privacidad</a>
+                <a href="terminos-y-condiciones.html" class="hover:text-white transition">Términos y Condiciones</a>
+            </div>
+        </div>
+        <div class="text-[10px] text-zinc-500">
+            Este sitio es solo para fines informativos y de portafolio. Todo el contenido es propiedad de Roxyrose.
+        </div>
+    </div>
+</footer>
+
+<div id="lightbox" onclick="if(event.target.id==='lightbox') this.classList.add('hidden')" class="hidden fixed inset-0 z-[9999] bg-black/85 backdrop-blur-xl items-center justify-center">
+    <div class="relative max-w-[92vw] max-h-[88vh]">
+        <button onclick="document.getElementById('lightbox').classList.add('hidden')" class="absolute -top-4 -right-4 w-9 h-9 bg-white/10 hover:bg-rose-500 rounded-full flex items-center justify-center text-white text-xl">
+            <i class="fa-solid fa-times"></i>
+        </button>
+        <img id="lb-img" class="max-w-[92vw] max-h-[88vh] rounded-2xl shadow-2xl border border-white/20" alt="">
+    </div>
+</div>
+
+<script>
+// PARTÍCULAS
+(function() {
+    const c = document.getElementById('particles-canvas');
+    const ctx = c.getContext('2d');
+    let W, H, p = [];
+    function r() { W = c.width = window.innerWidth; H = c.height = window.innerHeight; }
+    window.addEventListener('resize', r); r();
+    for (let i = 0; i < 65; i++) p.push({ x: Math.random()*W, y: Math.random()*H, r: Math.random()*1.7+0.9, vx: (Math.random()-0.5)*0.7, vy: (Math.random()-0.5)*0.7, pink: Math.random() > 0.55 });
+    function d() {
+        ctx.clearRect(0,0,W,H);
+        p.forEach(o => {
+            o.x += o.vx; o.y += o.vy;
+            if (o.x < 0 || o.x > W) o.vx *= -1;
+            if (o.y < 0 || o.y > H) o.vy *= -1;
+            ctx.save();
+            ctx.globalAlpha = 0.35 + Math.sin(Date.now()*0.004 + o.x)*0.45;
+            ctx.shadowColor = o.pink ? '#f43f5e' : '#fff';
+            ctx.shadowBlur = o.pink ? 15 : 9;
+            ctx.fillStyle = o.pink ? '#f43f5e' : '#fff';
+            ctx.beginPath(); ctx.arc(o.x, o.y, o.r, 0, Math.PI*2); ctx.fill();
+            ctx.restore();
+        });
+        requestAnimationFrame(d);
+    }
+    d();
+})();
+
+// CARRUSEL + MINIATURAS
+const imgs = ['assets/images/grok_image_1780159867735.jpg','assets/images/IMG_20260528_044159.jpg','assets/images/IMG_20260528_044147.jpg','assets/images/IMG_20260528_044112.jpg','assets/images/IMG_20260528_044124.jpg','assets/images/IMG_20260528_044056.jpg'];
+let current = 0;
+
+function initGallery() {
+    const slides = document.getElementById('carousel-slides');
+    const thumbs = document.getElementById('thumbnails');
+    if (!slides || !thumbs) return;
+
+    imgs.forEach((src, i) => {
+        const div = document.createElement('div');
+        div.className = 'min-w-full h-full flex-shrink-0 relative';
+        div.innerHTML = `<img src="${src}" class="w-full h-full object-cover" style="filter: blur(3px) brightness(0.85); transition: filter 0.5s, transform 0.5s;">`;
+        div.onclick = () => openLightbox(src);
+        slides.appendChild(div);
+
+        const thumb = document.createElement('div');
+        thumb.className = `thumbnail ${i === 0 ? 'active' : ''}`;
+        thumb.innerHTML = `<img src="${src}" alt="Miniatura ${i+1}">`;
+        thumb.onclick = () => { current = i; updateCarousel(); };
+        thumbs.appendChild(thumb);
+    });
+
+    function updateCarousel() {
+        slides.style.transform = `translateX(-${current * 100}%)`;
+        thumbs.querySelectorAll('.thumbnail').forEach((t, i) => t.classList.toggle('active', i === current));
+    }
+
+    setInterval(() => { current = (current + 1) % imgs.length; updateCarousel(); }, 4500);
+}
+
+window.onload = initGallery;
+
+function openLightbox(src) {
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lightbox').classList.remove('hidden');
+    document.getElementById('lightbox').classList.add('flex');
+}
+</script>
+</body>
+</html>
