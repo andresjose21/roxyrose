@@ -8,419 +8,496 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&display=swap');
-        body { font-family: 'Inter', system_ui, sans-serif; }
-        .heading-serif { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; letter-spacing: -0.025em; }
-        .rose-gradient { background: linear-gradient(135deg, #b76e79, #f43f5e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* ── SOCIALES ── */
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: 'Inter', system_ui, sans-serif; margin: 0; }
+        .heading-serif { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; letter-spacing: -0.025em; }
+        .rose-gradient { background: linear-gradient(135deg, #b76e79, #f43f5e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        /* ═══════════════════════════════════
+           PARTÍCULAS — encima de todo via z-index alto
+        ═══════════════════════════════════ */
+        #particles-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9000;          /* por encima de secciones, por debajo del navbar y lightbox */
+            pointer-events: none;
+        }
+
+        /* ═══════════════════════════════════
+           NAVBAR
+        ═══════════════════════════════════ */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 9800; }
+
+        /* ═══════════════════════════════════
+           SOCIALES
+        ═══════════════════════════════════ */
         .social-circle {
-            width: 40px; height: 40px;
+            width: 44px; height: 44px;
             display: flex; align-items: center; justify-content: center;
             border-radius: 9999px;
-            background: #18181b;
             border: 1px solid rgba(255,255,255,0.15);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s;
+            flex-shrink: 0;
         }
         .social-circle:hover { transform: scale(1.2); border-color: #f43f5e; }
         .social-circle.instagram { background: linear-gradient(135deg, #f43f5e, #c026d3); }
         .social-circle.facebook  { background: #1877f2; }
         .social-circle.paypal    { background: #00457c; }
-        .social-circle.tiktok    { background: #000000; }
+        .social-circle.tiktok    { background: #000000; border: 1px solid rgba(255,255,255,0.25); }
 
-        /* ── PARTÍCULAS FLOTANTES ── */
-        #particles-canvas {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 20;
-            pointer-events: none;
+        /* ═══════════════════════════════════
+           HERO
+        ═══════════════════════════════════ */
+        .hero-section {
+            position: relative;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            overflow: hidden;
         }
-
-        /* ──────────────────────────────────────────────────────
-           HERO LAYOUT
-           DESKTOP : contenido ocupa todo el ancho del hero (área roja)
-           MOBILE  : nombre llega hasta la raya naranja (≈ 58px)
-        ─────────────────────────────────────────────────────── */
+        .hero-bg-video {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            z-index: 0;
+        }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.80) 100%);
+            z-index: 1;
+        }
         .hero-content {
             position: relative;
-            z-index: 30;
+            z-index: 2;
             width: 100%;
-            max-width: none;
-            padding: 0 6vw;
-            margin-left: 0;
+            padding: 0 5vw;
         }
 
-        /* Nombre: mobile 58px → desktop llena toda la pantalla */
+        /* TÍTULO: en mobile usa 100% del ancho disponible,
+           en desktop escala con vw para llenar la pantalla */
         .hero-title {
-            font-size: clamp(58px, 12vw, 130px);
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            line-height: 1;
-            margin-bottom: 1rem;
             font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 0.95;
+            margin-bottom: 1rem;
+            /* mobile: texto más grande que antes pero controlado */
+            font-size: clamp(64px, 20vw, 200px);
+            white-space: nowrap;
         }
 
-        /* En mobile el nombre NO supera la marca naranja (barra vertical izq) */
-        @media (max-width: 767px) {
-            .hero-title {
-                font-size: 58px;
-            }
-            .hero-content {
-                padding: 0 6vw;
-            }
-        }
-
-        /* En escritorio el contenido ocupa todo el recuadro rojo */
-        @media (min-width: 768px) {
-            .hero-content {
-                max-width: 100%;
-                padding: 0 8vw;
-            }
-            .hero-title {
-                font-size: clamp(80px, 11vw, 130px);
-            }
-            .hero-desc { max-width: 520px; }
-        }
-
-        /* ── ACENTO NARANJA VERTICAL (mobile) ── */
-        .orange-bar {
-            display: inline-block;
-            width: 5px;
-            height: 1em;
-            background: #f97316;
-            border-radius: 3px;
-            margin-right: 10px;
-            vertical-align: middle;
+        /* REDES: mobile → centradas | desktop → alineadas a la izq */
+        .socials-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.25rem;
+            justify-content: center;   /* mobile: centrado */
         }
         @media (min-width: 768px) {
-            .orange-bar { display: none; }
+            .socials-row {
+                justify-content: flex-start; /* desktop: izquierda */
+            }
         }
 
-        /* ── CARRUSEL con BLUR ── */
-        .carousel-img {
+        /* BOTONES hero: mobile ancho completo / desktop ancho fijo */
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
             width: 100%;
+        }
+        @media (min-width: 768px) {
+            .hero-buttons { max-width: 320px; }
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 15px 24px;
+            background: #fff;
+            color: #09090b;
+            font-weight: 700;
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .btn-primary:hover { background: #f1f5f9; transform: translateY(-1px); }
+
+        .btn-secondary {
+            width: 100%;
+            padding: 15px 24px;
+            background: transparent;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 9999px;
+            border: 1.5px solid rgba(255,255,255,0.4);
+            cursor: pointer;
+            font-size: 16px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: background 0.2s;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.06); }
+
+        /* Badge disponible */
+        .avail-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 18px;
+            border-radius: 9999px;
+            background: rgba(255,255,255,0.10);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.20);
+            margin-bottom: 18px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+        }
+        .avail-dot {
+            width: 8px; height: 8px;
+            background: #34d399;
+            border-radius: 50%;
+            animation: pulse-dot 1.4s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%,100% { opacity: 1; transform: scale(1); }
+            50%      { opacity: 0.5; transform: scale(1.4); }
+        }
+
+        /* ═══════════════════════════════════
+           CARRUSEL
+        ═══════════════════════════════════ */
+        #carousel-container {
+            position: relative;
+            height: 520px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.10);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+            background: #18181b;  /* fondo mientras carga */
+        }
+        @media (min-width: 768px) { #carousel-container { height: 620px; } }
+
+        #carousel-slides {
+            display: flex;
             height: 100%;
-            object-fit: cover;
-            filter: blur(3px) brightness(0.85);
-            transform: scale(1.04);
-            transition: filter 0.5s, transform 0.5s;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .slide-item {
+            min-width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
             cursor: pointer;
         }
-        .carousel-img:hover {
+        .slide-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: blur(4px) brightness(0.8);
+            transform: scale(1.05);
+            transition: filter 0.5s ease, transform 0.5s ease;
+        }
+        .slide-item:hover img {
             filter: blur(0px) brightness(1);
             transform: scale(1);
         }
+        .slide-hint {
+            position: absolute;
+            bottom: 14px; right: 18px;
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(6px);
+            color: #fff;
+            font-size: 12px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .slide-item:hover .slide-hint { opacity: 1; }
 
-        /* ── LIGHTBOX VIDRIO ── */
+        /* Navegación carrusel */
+        .carousel-nav {
+            position: absolute;
+            bottom: 18px; left: 50%;
+            transform: translateX(-50%);
+            display: flex; gap: 8px;
+            z-index: 10;
+        }
+        .carousel-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.35);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            border: none;
+        }
+        .carousel-dot.active { background: #f43f5e; transform: scale(1.4); }
+
+        /* ═══════════════════════════════════
+           LIGHTBOX ESTILO VIDRIO
+        ═══════════════════════════════════ */
         #lightbox {
             display: none;
-            position: fixed;
-            inset: 0;
+            position: fixed; inset: 0;
             z-index: 9999;
-            background: rgba(0,0,0,0.75);
-            backdrop-filter: blur(18px) saturate(1.4);
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(20px) saturate(1.4);
             align-items: center;
             justify-content: center;
         }
         #lightbox.open { display: flex; }
 
-        #lightbox-inner {
+        .lb-wrap {
             position: relative;
-            max-width: 90vw;
-            max-height: 90vh;
-            border-radius: 24px;
+        }
+        #lb-glow {
+            position: absolute;
+            inset: -80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(244,63,94,0.5) 0%, rgba(183,110,121,0.25) 45%, transparent 70%);
+            filter: blur(50px);
+            animation: glowPulse 2.5s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes glowPulse {
+            from { opacity: 0.55; transform: scale(0.88); }
+            to   { opacity: 1;    transform: scale(1.1); }
+        }
+        #lb-inner {
+            position: relative;
+            z-index: 1;
+            border-radius: 22px;
             overflow: hidden;
-            /* VIDRIO */
-            background: rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.07);
             border: 1px solid rgba(255,255,255,0.22);
             box-shadow:
-                0 0 60px 20px rgba(244,63,94,0.35),
-                0 0 120px 40px rgba(183,110,121,0.2),
+                0 0 50px 12px rgba(244,63,94,0.30),
+                0 0 110px 35px rgba(183,110,121,0.15),
                 inset 0 1px 0 rgba(255,255,255,0.25);
-            backdrop-filter: blur(24px) saturate(1.6);
+            backdrop-filter: blur(20px) saturate(1.5);
         }
-        #lightbox-inner img {
+        #lb-img {
             display: block;
             max-width: 90vw;
             max-height: 85vh;
             object-fit: contain;
-            border-radius: 20px;
+            border-radius: 18px;
         }
-        /* Resplandor animado atrás del lightbox */
-        #lightbox-glow {
+        #lb-close {
             position: absolute;
-            inset: -60px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(244,63,94,0.45) 0%, rgba(183,110,121,0.2) 50%, transparent 75%);
-            filter: blur(40px);
-            animation: glowPulse 2.5s ease-in-out infinite alternate;
-            z-index: -1;
-            pointer-events: none;
-        }
-        @keyframes glowPulse {
-            from { opacity: 0.6; transform: scale(0.9); }
-            to   { opacity: 1;   transform: scale(1.08); }
-        }
-
-        #lightbox-close {
-            position: absolute;
-            top: 14px; right: 14px;
-            width: 36px; height: 36px;
+            top: 12px; right: 12px;
+            z-index: 2;
+            width: 38px; height: 38px;
             border-radius: 50%;
             background: rgba(255,255,255,0.15);
             border: 1px solid rgba(255,255,255,0.3);
             backdrop-filter: blur(8px);
             display: flex; align-items: center; justify-content: center;
             cursor: pointer;
-            font-size: 18px; color: #fff;
+            color: #fff; font-size: 18px;
             transition: background 0.2s, transform 0.2s;
-            z-index: 10;
         }
-        #lightbox-close:hover { background: rgba(244,63,94,0.4); transform: scale(1.1); }
+        #lb-close:hover { background: rgba(244,63,94,0.45); transform: scale(1.1); }
+
+        /* ═══════════════════════════════════
+           SECCIONES
+        ═══════════════════════════════════ */
+        .section-tag {
+            color: #f43f5e;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 28px; left: 50%;
+            transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center;
+            z-index: 3;
+        }
+
+        /* Animación bounce para el chevron */
+        @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+        .bounce { animation: bounce 1.4s ease-in-out infinite; }
     </style>
 </head>
 <body class="bg-zinc-950 text-white overflow-x-hidden">
 
-    <!-- ══════════════ PARTÍCULAS CANVAS ══════════════ -->
-    <canvas id="particles-canvas"></canvas>
+<!-- ═══════ PARTÍCULAS (fixed, z-index 9000 = visible sobre todo) ═══════ -->
+<canvas id="particles-canvas"></canvas>
 
-    <!-- ══════════════ NAVBAR ══════════════ -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-md border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center h-20">
-            <div class="flex items-center gap-x-3">
-                <div class="w-11 h-11 bg-gradient-to-br from-rose-400 to-pink-600 rounded-2xl flex items-center justify-center">
-                    <i class="fa-solid fa-rose text-white text-3xl"></i>
-                </div>
-                <div>
-                    <span class="font-bold text-3xl tracking-tighter heading-serif">Roxyrose</span>
-                    <span class="text-[10px] text-rose-400 font-medium tracking-[2px] block -mt-1">MODELO • INFLUENCER</span>
-                </div>
+<!-- ═══════ NAVBAR (z-index 9800) ═══════ -->
+<nav class="bg-zinc-950/90 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-5 flex justify-between items-center h-20">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-rose-400 to-pink-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-rose text-white text-2xl"></i>
             </div>
-            <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
-                <a href="#galeria"   class="hover:text-rose-400 transition">Galería</a>
-                <a href="#servicios" class="hover:text-rose-400 transition">Servicios</a>
-                <a href="#contacto"  class="hover:text-rose-400 transition">Contacto</a>
+            <div>
+                <span class="font-bold text-2xl tracking-tighter heading-serif">Roxyrose</span>
+                <span class="text-[10px] text-rose-400 font-medium tracking-[2px] block -mt-0.5">MODELO • INFLUENCER</span>
             </div>
-            <button onclick="document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' })"
-                    class="px-6 py-2.5 bg-white text-zinc-950 font-semibold rounded-3xl text-sm hover:bg-zinc-100 transition">
-                Book Now
+        </div>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+            <a href="#galeria"   class="hover:text-rose-400 transition-colors">Galería</a>
+            <a href="#servicios" class="hover:text-rose-400 transition-colors">Servicios</a>
+            <a href="#contacto"  class="hover:text-rose-400 transition-colors">Contacto</a>
+        </div>
+        <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})"
+                class="px-5 py-2.5 bg-white text-zinc-950 font-semibold rounded-3xl text-sm hover:bg-zinc-100 transition-colors">
+            Book Now
+        </button>
+    </div>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<header class="hero-section">
+    <!-- Video de fondo -->
+    <video autoplay muted loop playsinline class="hero-bg-video"
+           poster="assets/images/grok_image_1780159867735.jpg">
+        <source src="assets/images/VID_20260503_000135.mp4" type="video/mp4">
+        <img src="assets/images/grok_image_1780159867735.jpg"
+             class="hero-bg-video" alt="Roxyrose">
+    </video>
+    <div class="hero-overlay"></div>
+
+    <!-- Contenido -->
+    <div class="hero-content">
+        <!-- Badge -->
+        <div class="avail-badge">
+            <div class="avail-dot"></div>
+            <span>AHORA DISPONIBLE PARA COLABORACIONES</span>
+        </div>
+
+        <!-- Título grande que llena el ancho -->
+        <h1 class="hero-title heading-serif">
+            ROXY<span class="rose-gradient">ROSE</span>
+        </h1>
+
+        <!-- Redes: centradas en mobile, izq en desktop -->
+        <div class="socials-row">
+            <a href="https://www.instagram.com/roxyrose_fy" target="_blank" class="social-circle instagram">
+                <i class="fa-brands fa-instagram text-white text-lg"></i>
+            </a>
+            <a href="https://www.facebook.com/roxyrose.fy" target="_blank" class="social-circle facebook">
+                <i class="fa-brands fa-facebook-f text-white text-lg"></i>
+            </a>
+            <a href="https://paypal.me/roxyrosefy" target="_blank" class="social-circle paypal">
+                <i class="fa-brands fa-paypal text-white text-lg"></i>
+            </a>
+            <a href="https://www.tiktok.com/@roxyrose_fy" target="_blank" class="social-circle tiktok">
+                <i class="fa-brands fa-tiktok text-white text-lg"></i>
+            </a>
+        </div>
+
+        <!-- Tagline -->
+        <p class="text-rose-400 font-semibold text-lg md:text-2xl mb-2">
+            Energía juguetona y seductora
+        </p>
+        <p class="text-zinc-400 text-sm md:text-base mb-8 max-w-md leading-relaxed">
+            Modelo y creadora de contenido que ama posar en la naturaleza, brillar con glamour y compartir su mundo contigo.
+        </p>
+
+        <!-- Botones -->
+        <div class="hero-buttons">
+            <button class="btn-primary"
+                    onclick="document.getElementById('galeria').scrollIntoView({behavior:'smooth'})">
+                <span>Explorar Galería</span>
+                <i class="fa-solid fa-images"></i>
             </button>
-        </div>
-    </nav>
-
-    <!-- ══════════════ HERO ══════════════ -->
-    <header class="relative min-h-[100dvh] flex items-center pt-20 overflow-hidden">
-        <video autoplay muted loop playsinline
-               class="absolute inset-0 w-full h-full object-cover z-0"
-               poster="assets/images/grok_image_1780159867735.jpg"
-               style="object-position: center 30%;">
-            <source src="assets/images/VID_20260503_000135.mp4" type="video/mp4">
-            <img src="assets/images/grok_image_1780159867735.jpg"
-                 class="absolute inset-0 w-full h-full object-cover" alt="Roxyrose">
-        </video>
-        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80 z-10"></div>
-
-        <!-- CONTENIDO HERO -->
-        <div class="hero-content">
-            <!-- BADGE -->
-            <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl bg-white/10 backdrop-blur-md mb-5 border border-white/20">
-                <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                <span class="text-sm font-medium tracking-widest">AHORA DISPONIBLE PARA COLABORACIONES</span>
-            </div>
-
-            <!-- NOMBRE -->
-            <h1 class="hero-title heading-serif">
-                <!-- En mobile: barra naranja + ROXY | En desktop: solo el texto enorme -->
-                <span class="orange-bar"></span>ROXY<span class="rose-gradient">ROSE</span>
-            </h1>
-
-            <!-- REDES -->
-            <div class="flex items-center gap-4 mb-6">
-                <a href="https://www.instagram.com/roxyrose_fy" target="_blank" class="social-circle instagram"><i class="fa-brands fa-instagram text-white text-[19px]"></i></a>
-                <a href="https://www.facebook.com/roxyrose.fy"  target="_blank" class="social-circle facebook"><i class="fa-brands fa-facebook-f text-white text-[19px]"></i></a>
-                <a href="https://paypal.me/roxyrosefy"          target="_blank" class="social-circle paypal"><i class="fa-brands fa-paypal text-white text-[19px]"></i></a>
-                <a href="https://www.tiktok.com/@roxyrose_fy"   target="_blank" class="social-circle tiktok"><i class="fa-brands fa-tiktok text-white text-[19px]"></i></a>
-            </div>
-
-            <p class="text-[15px] md:text-2xl text-zinc-300 mb-3 leading-tight">
-                <span class="text-rose-400 font-semibold">Energía juguetona y seductora</span>
-            </p>
-            <p class="hero-desc text-zinc-400 text-xs md:text-base mb-8 leading-snug">
-                Modelo y creadora de contenido que ama posar en la naturaleza, brillar con glamour y compartir su mundo contigo.
-            </p>
-
-            <div class="flex flex-col gap-3 max-w-[280px] md:max-w-xs">
-                <button onclick="document.getElementById('galeria').scrollIntoView({ behavior: 'smooth' })"
-                        class="w-full py-4 bg-white text-zinc-950 font-semibold rounded-3xl flex items-center justify-center gap-x-2 hover:bg-zinc-100 transition-all text-[15px] md:text-lg">
-                    <span>Explorar Galería</span>
-                    <i class="fa-solid fa-images text-sm md:text-base"></i>
-                </button>
-                <button onclick="document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' })"
-                        class="w-full py-4 border border-white/40 hover:bg-white/5 font-semibold rounded-3xl flex items-center justify-center gap-x-2 transition-all text-[15px] md:text-lg">
-                    <span>Conectar</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-30">
-            <span class="text-[10px] tracking-[2px] mb-1 text-zinc-400">SCROLL PARA DESCUBRIR</span>
-            <i class="fa-solid fa-chevron-down text-xl animate-bounce text-rose-400"></i>
-        </div>
-    </header>
-
-    <!-- ══════════════ GALERÍA ══════════════ -->
-    <section id="galeria" class="max-w-6xl mx-auto px-6 py-20">
-        <div class="text-center mb-12">
-            <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]">PORTAFOLIO VISUAL</span>
-            <h2 class="text-5xl font-bold heading-serif mt-2">Mi mundo en imágenes</h2>
-        </div>
-        <div class="relative max-w-[1100px] mx-auto">
-            <div id="carousel-container" class="relative h-[520px] md:h-[620px] overflow-hidden rounded-3xl shadow-2xl border border-white/10">
-                <div id="carousel-slides" class="flex h-full transition-transform duration-700 ease-out">
-                    <!-- JS inserta las imágenes -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ══════════════ SERVICIOS ══════════════ -->
-    <section id="servicios" class="bg-zinc-900 py-20 border-y border-white/10">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]">EXPERIENCIAS EXCLUSIVAS</span>
-            <h2 class="text-5xl font-bold heading-serif mt-3">¿Qué puedo hacer por ti?</h2>
-            <div class="max-w-2xl mx-auto mt-8 text-left text-zinc-300">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-zinc-950 p-6 rounded-3xl border border-white/10">
-                        <div class="flex items-center gap-x-4">
-                            <i class="fa-solid fa-camera text-rose-400 text-3xl"></i>
-                            <div>
-                                <h4 class="font-semibold text-xl">Sesiones de Fotos Privadas</h4>
-                                <p class="text-sm text-zinc-400 mt-1">Shoots exclusivos en locaciones increíbles con edición premium.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-zinc-950 p-6 rounded-3xl border border-white/10">
-                        <div class="flex items-center gap-x-4">
-                            <i class="fa-solid fa-video text-rose-400 text-3xl"></i>
-                            <div>
-                                <h4 class="font-semibold text-xl">Contenido Personalizado</h4>
-                                <p class="text-sm text-zinc-400 mt-1">Videos y fotos hechos a tu medida. ¡Dime tu fantasía!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-zinc-950 p-6 rounded-3xl border border-white/10">
-                        <div class="flex items-center gap-x-4">
-                            <i class="fa-solid fa-globe text-rose-400 text-3xl"></i>
-                            <div>
-                                <h4 class="font-semibold text-xl">Colaboraciones & Eventos</h4>
-                                <p class="text-sm text-zinc-400 mt-1">Apariciones en eventos, campañas y brand deals.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-zinc-950 p-6 rounded-3xl border border-white/10">
-                        <div class="flex items-center gap-x-4">
-                            <i class="fa-solid fa-heart text-rose-400 text-3xl"></i>
-                            <div>
-                                <h4 class="font-semibold text-xl">Experiencias VIP</h4>
-                                <p class="text-sm text-zinc-400 mt-1">Acceso prioritario, chats privados y contenido behind-the-scenes.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ══════════════ CONTACTO ══════════════ -->
-    <section id="contacto" class="max-w-3xl mx-auto px-6 py-20">
-        <div class="text-center">
-            <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]">HABLEMOS</span>
-            <h2 class="text-5xl font-bold heading-serif mt-2">¿Lista para crear algo increíble?</h2>
-        </div>
-        <form class="mt-10 space-y-6" onsubmit="event.preventDefault(); alert('¡Mensaje enviado! Te responderé pronto 💌'); this.reset();">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input type="text"  placeholder="Tu nombre" class="w-full bg-zinc-900 border border-white/20 rounded-2xl px-5 py-3.5 focus:outline-none focus:border-rose-400">
-                <input type="email" placeholder="Tu email"  class="w-full bg-zinc-900 border border-white/20 rounded-2xl px-5 py-3.5 focus:outline-none focus:border-rose-400">
-            </div>
-            <textarea placeholder="Cuéntame más..." rows="5" class="w-full bg-zinc-900 border border-white/20 rounded-3xl px-5 py-4 focus:outline-none focus:border-rose-400"></textarea>
-            <button type="submit" class="w-full py-4 bg-gradient-to-r from-rose-500 to-pink-600 font-semibold text-lg rounded-3xl hover:brightness-110 transition">
-                Enviar mensaje
+            <button class="btn-secondary"
+                    onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">
+                <span>Conectar</span>
             </button>
-        </form>
-    </section>
-
-    <footer class="bg-black border-t border-white/10 py-12 text-center text-sm text-zinc-500">
-        © 2026 Roxyrose • Todos los derechos reservados • Hecho con ❤️ para mis fans
-    </footer>
-
-    <!-- ══════════════ LIGHTBOX ══════════════ -->
-    <div id="lightbox">
-        <div style="position:relative;">
-            <div id="lightbox-glow"></div>
-            <div id="lightbox-inner">
-                <button id="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
-                <img id="lightbox-img" src="" alt="Imagen ampliada">
-            </div>
         </div>
     </div>
 
-    <script>
-    /* ════════════════════════════════════════
-       PARTÍCULAS CANVAS — flotan por toda la página
-    ════════════════════════════════════════ */
-    (function() {
-        const canvas = document.getElementById('particles-canvas');
-        const ctx    = canvas.getContext('2d');
-        let W, H, particles = [];
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+        <span style="font-size:10px;letter-spacing:2px;color:#71717a;margin-bottom:4px;">SCROLL PARA DESCUBRIR</span>
+        <i class="fa-solid fa-chevron-down text-rose-400 text-lg bounce"></i>
+    </div>
+</header>
 
-        function resize() {
-            W = canvas.width  = window.innerWidth;
-            H = canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
+<!-- ═══════ GALERÍA ═══════ -->
+<section id="galeria" class="max-w-6xl mx-auto px-5 py-20">
+    <div class="text-center mb-12">
+        <span class="section-tag">PORTAFOLIO VISUAL</span>
+        <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-2">Mi mundo en imágenes</h2>
+    </div>
 
-        // Crear partículas
-        const COUNT = 55;
-        for (let i = 0; i < COUNT; i++) {
-            particles.push({
-                x:    Math.random() * window.innerWidth,
-                y:    Math.random() * window.innerHeight,
-                r:    Math.random() * 2 + 1,
-                vx:   (Math.random() - 0.5) * 0.45,
-                vy:   (Math.random() - 0.5) * 0.45,
-                alpha: Math.random(),
-                speed: Math.random() * 0.012 + 0.006,
-                phase: Math.random() * Math.PI * 2,
-                glow:  Math.random() > 0.5  // algunas con color rosa
-            });
-        }
+    <div class="relative max-w-[1100px] mx-auto">
+        <div id="carousel-container">
+            <div id="carousel-slides"></div>
+            <div class="carousel-nav" id="carousel-dots"></div>
+        </div>
+    </div>
+</section>
 
-        function draw(ts) {
-            // Redibujar sobre la pantalla visible (no depende del scroll)
-            ctx.clearRect(0, 0, W, H);
-            particles.forEach(p => {
-                p.x += p.vx;
-                p.y += p.vy;
-                // Rebote en bordes
-                if (p.x < 0) p.x = W;
-                if (p.x > W) p.x = 0;
-                if (p.y < 0) p.y = H;
-                if (p.y > H) p.y = 0;
-                // Parpadeo
-                p.alpha = 0.3 + 0.7 * (0.5 + 0.5 * Math.sin(ts * p.speed + p.phase));
+<!-- ═══════ SERVICIOS ═══════ -->
+<section id="servicios" class="bg-zinc-900 py-20 border-y border-white/10">
+    <div class="max-w-6xl mx-auto px-5 text-center">
+        <span class="section-tag">EXPERIENCIAS EXCLUSIVAS</span>
+        <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-3 mb-10">¿Qué puedo hacer por ti?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto text-left text-zinc-300">
+            <div class="bg-zinc-950 p-6 rounded-3xl border border-white/10">
+                <div class="flex items-start gap-4">
+                    <i class="fa-solid fa-camera text-rose-400 text-3xl mt-1 flex-shrink-0"></i>
+                    <div>
+                        <h4 class="font-semibold text-xl mb-1">Sesiones de Fotos Privadas</h4>
+                        <p class="text-sm text-zinc-400">Shoots exclusivos en locaciones increíbles con edición premium.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-zinc-950 p-6 rounded-3xl border border-white/10">
+                <div class="flex items-start gap-4">
+                    <i class="fa-solid fa-video text-rose-400 text-3xl mt-1 flex-shrink-0"></i>
+                    <div>
+                        <h4 class="font-semibold text-xl mb-1">Contenido Personalizado</h4>
+                        <p class="text-sm text-zinc-400">Videos y fotos hechos a tu medida. ¡Dime tu fantasía!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-zinc-950 p-6 rounded-3xl border border-white/10">
+                <div class="flex items-start gap-4">
+                    <i class="fa-solid fa-globe text-rose-400 text-3xl mt-1 flex-shrink-0"></i>
+                    <div>
+                        <h4 class="font-semibold text-xl mb-1">Colaboraciones & Eventos</h4>
+                        <p class="text-sm text-zinc-400">Apariciones en eventos, campañas y brand deals.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-zinc-950 p-6 rounded-3xl border border-white/10">
+                <div class="flex items-start gap-4">
+                    <i class="fa-solid fa-heart text-rose-400 text-3xl mt-1 flex-shrink-0"></i>
+                    <div>
+                        <h4 class="font-semibold text-xl mb-1">Experiencias VIP</h4>
+                        <p class="text-sm text-zinc-400">Acceso prioritario, chats privados y contenido behind-the-scenes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-                ctx.save();
-                ctx.globalAlpha = p.alpha;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = p.glow ? '#f43f5e' : '#ffffff';
-                ctx.shadowColor = p.glow ? '#f43f5e' : '#ffffff';
-                ctx.shadowBlur  = p.glow ? 14 : 8;
-                ctx.fill();
-                ctx.restore();
-            });
-            requestAnimationFrame(draw);
-        }
-        requestAnimationFrame(d
+<!-- ═══════ CONTACTO ═══════ -->
+<section id="contacto" class="max-w-3xl mx-auto px-5 py-20">
+    <div class="text-center mb-10">
+        <span class="section-tag">HABLEMOS</span>
+        <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-2">¿Lista para crear algo increíble?</h2>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('¡Mensaje enviado! Te r
