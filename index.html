@@ -41,17 +41,22 @@
 
         .hero-title { font-size: clamp(52px, 11vw, 105px); line-height: 0.92; }
 
-        .thumbnail { width: 68px; height: 68px; border-radius: 12px; overflow: hidden; border: 2px solid transparent; transition: all 0.3s ease; cursor: pointer; flex-shrink: 0; }
-        .thumbnail.active { border-color: #f43f5e; transform: scale(1.05); }
-        .thumbnail img { width: 100%; height: 100%; object-fit: cover; }
+        .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.12); }
 
-        @media (min-width: 768px) { .thumbnail { width: 82px; height: 82px; } }
+        .service-card { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s; }
+        .service-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 25px 60px -15px rgb(244 63 94 / 0.3); }
+
+        .filter-btn { transition: all 0.3s ease; }
+        .filter-btn.active { background: #f43f5e; color: white; border-color: #f43f5e; }
+
+        .premium-shadow { box-shadow: 0 10px 30px -15px rgb(0 0 0 / 0.5); }
     </style>
 </head>
 <body class="bg-zinc-950 text-white">
 
 <canvas id="particles-canvas"></canvas>
 
+<!-- NAVBAR -->
 <nav class="fixed top-0 left-0 right-0 z-[9800] bg-zinc-950/90 backdrop-blur-md border-b border-white/10">
     <div class="max-w-7xl mx-auto px-5 flex justify-between items-center h-20">
         <div class="flex items-center gap-3">
@@ -64,6 +69,8 @@
             </div>
         </div>
         <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+            <a href="#sobre-mi" class="hover:text-rose-400 transition">Sobre mí</a>
+            <a href="#redes" class="hover:text-rose-400 transition">Redes</a>
             <a href="#galeria" class="hover:text-rose-400 transition">Galería</a>
             <a href="#servicios" class="hover:text-rose-400 transition">Servicios</a>
             <a href="#contacto" class="hover:text-rose-400 transition">Contacto</a>
@@ -74,126 +81,253 @@
     </div>
 </nav>
 
+<!-- HERO PREMIUM -->
 <header class="min-h-[100dvh] flex items-center justify-center pt-20 relative overflow-hidden">
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0" poster="assets/images/grok_image_1780159867735.jpg">
+    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0" poster="assets/images/grok_image_1780159867735.jpg" style="object-position: center 25%;">
         <source src="assets/images/VID_20260503_000135.mp4" type="video/mp4">
     </video>
-    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/82 z-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/60 to-black/85 z-10"></div>
 
-    <div class="relative z-20 max-w-3xl mx-auto px-6 text-center md:text-left">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-3xl bg-white/10 backdrop-blur-md mb-6 border border-white/20">
+    <div class="relative z-20 max-w-4xl mx-auto px-6 text-center">
+        <div class="inline-flex items-center gap-2 px-5 py-1.5 rounded-3xl glass mb-6 border border-white/20">
             <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-            <span class="text-sm font-medium tracking-[1.5px]">AHORA DISPONIBLE PARA COLABORACIONES</span>
+            <span class="text-sm font-medium tracking-[1.5px]">AHORA DISPONIBLE PARA COLABORACIONES EXCLUSIVAS</span>
         </div>
 
-        <h1 class="hero-title heading-serif mb-4">
+        <h1 class="hero-title heading-serif mb-6">
             ROXY<span class="rose-gradient">ROSE</span>
         </h1>
 
-        <div class="flex gap-3 mb-7 justify-center md:justify-start">
-            <a href="https://www.instagram.com/roxyrose_fy" target="_blank" class="social-circle instagram"><i class="fa-brands fa-instagram text-white text-xl"></i></a>
-            <a href="https://www.facebook.com/roxyrose.fy" target="_blank" class="social-circle facebook"><i class="fa-brands fa-facebook-f text-white text-xl"></i></a>
-            <a href="https://paypal.me/roxyrosefy" target="_blank" class="social-circle paypal"><i class="fa-brands fa-paypal text-white text-xl"></i></a>
-            <a href="https://www.tiktok.com/@roxyrose_fy" target="_blank" class="social-circle tiktok"><i class="fa-brands fa-tiktok text-white text-xl"></i></a>
-        </div>
+        <p class="text-2xl md:text-3xl text-zinc-200 max-w-2xl mx-auto mb-8 font-light">Energía juguetona. Alma seductora. Contenido que enamora.</p>
 
-        <p class="text-rose-400 font-semibold text-xl md:text-2xl mb-3">Energía juguetona y seductora</p>
-        <p class="text-zinc-400 max-w-md text-sm md:text-base mb-8">Modelo y creadora de contenido que ama posar en la naturaleza, brillar con glamour y compartir su mundo contigo.</p>
-
-        <div class="flex flex-col sm:flex-row gap-3 max-w-[320px] mx-auto md:mx-0">
-            <button onclick="document.getElementById('galeria').scrollIntoView({behavior:'smooth'})" class="flex-1 py-3.5 bg-white text-zinc-950 font-semibold rounded-3xl flex items-center justify-center gap-2 hover:bg-zinc-100 transition">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button onclick="document.getElementById('galeria').scrollIntoView({behavior:'smooth'})" class="px-8 py-4 bg-white text-zinc-950 font-semibold rounded-3xl flex items-center justify-center gap-3 hover:bg-zinc-100 transition-all text-lg">
                 Explorar Galería <i class="fa-solid fa-images"></i>
             </button>
-            <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})" class="flex-1 py-3.5 border border-white/40 hover:bg-white/5 font-semibold rounded-3xl transition">
-                Conectar
+            <button onclick="document.getElementById('redes').scrollIntoView({behavior:'smooth'})" class="px-8 py-4 glass border border-white/30 hover:bg-white/10 font-semibold rounded-3xl flex items-center justify-center gap-3 transition-all text-lg">
+                Conectar <i class="fa-solid fa-arrow-right"></i>
             </button>
         </div>
+    </div>
+
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center z-30">
+        <span class="text-xs tracking-[3px] text-zinc-400 mb-2">SCROLL PARA DESCUBRIR</span>
+        <i class="fa-solid fa-chevron-down text-rose-400 text-2xl animate-bounce"></i>
     </div>
 </header>
 
-<section id="galeria" class="max-w-6xl mx-auto px-5 py-20">
-    <div class="text-center mb-10">
-        <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]">PORTAFOLIO VISUAL</span>
-        <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-2">Mi mundo en imágenes</h2>
-    </div>
+<!-- SOBRE MÍ -->
+<section id="sobre-mi" class="max-w-5xl mx-auto px-6 py-24">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+            <span class="text-rose-400 text-sm font-semibold tracking-[2px]">CONÓCEME</span>
+            <h2 class="text-5xl font-bold heading-serif mt-3 mb-8">La mujer detrás de la cámara</h2>
+            
+            <div class="space-y-6 text-lg text-zinc-300">
+                <p>Soy Roxyrose, una modelo y creadora de contenido que encuentra belleza en lo natural, lo sensual y lo auténtico.</p>
+                <p>Mi pasión es capturar momentos que transmitan emoción, deseo y libertad. Ya sea en la naturaleza, en locaciones exclusivas o en la intimidad de mi mundo, siempre busco crear algo que conecte.</p>
+            </div>
 
-    <div class="relative max-w-[620px] md:max-w-3xl lg:max-w-4xl mx-auto mb-6">
-        <div id="carousel-container" class="relative h-[520px] md:h-[620px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-            <div id="carousel-slides" class="flex h-full transition-transform duration-700 ease-out"></div>
+            <div class="mt-10 flex gap-4">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-rose-400">120k+</div>
+                    <div class="text-xs tracking-widest text-zinc-400">SEGUIDORES</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-rose-400">87</div>
+                    <div class="text-xs tracking-widest text-zinc-400">COLABORACIONES</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-rose-400">12</div>
+                    <div class="text-xs tracking-widest text-zinc-400">PAÍSES</div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="flex gap-3 overflow-x-auto pb-4 max-w-[620px] md:max-w-3xl lg:max-w-4xl mx-auto hide-scrollbar">
-        <div id="thumbnails" class="flex gap-3"></div>
-    </div>
-</section>
-
-<section id="servicios" class="bg-zinc-900 py-20 border-y border-white/10">
-    <div class="max-w-6xl mx-auto px-5">
-        <div class="text-center mb-12">
-            <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]">EXPERIENCIAS EXCLUSIVAS</span>
-            <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-2">¿Qué puedo hacer por ti?</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            <div class="bg-zinc-950 p-7 rounded-3xl border border-white/10">
-                <i class="fa-solid fa-camera text-rose-400 text-3xl mb-4"></i>
-                <h4 class="font-semibold text-xl mb-2">Sesiones de Fotos Privadas</h4>
-                <p class="text-zinc-400">Shoots exclusivos en locaciones increíbles con edición premium.</p>
+        <div class="relative">
+            <div class="glass rounded-3xl p-1 premium-shadow">
+                <img src="assets/images/grok_image_1780159867735.jpg" class="rounded-3xl w-full" alt="Roxyrose">
             </div>
-            <div class="bg-zinc-950 p-7 rounded-3xl border border-white/10">
-                <i class="fa-solid fa-video text-rose-400 text-3xl mb-4"></i>
-                <h4 class="font-semibold text-xl mb-2">Contenido Personalizado</h4>
-                <p class="text-zinc-400">Videos y fotos hechos a tu medida. ¡Dime tu fantasía!</p>
-            </div>
-            <div class="bg-zinc-950 p-7 rounded-3xl border border-white/10">
-                <i class="fa-solid fa-globe text-rose-400 text-3xl mb-4"></i>
-                <h4 class="font-semibold text-xl mb-2">Colaboraciones & Eventos</h4>
-                <p class="text-zinc-400">Apariciones en eventos, campañas y brand deals.</p>
-            </div>
-            <div class="bg-zinc-950 p-7 rounded-3xl border border-white/10">
-                <i class="fa-solid fa-heart text-rose-400 text-3xl mb-4"></i>
-                <h4 class="font-semibold text-xl mb-2">Experiencias VIP</h4>
-                <p class="text-zinc-400">Acceso prioritario, chats privados y contenido behind-the-scenes.</p>
+            <div class="absolute -bottom-6 -right-6 bg-zinc-900 border border-white/20 rounded-2xl p-5 text-sm max-w-[220px]">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-globe text-rose-400 text-xl"></i>
+                    <div>
+                        <div class="font-semibold">Disponible para viajes</div>
+                        <div class="text-xs text-zinc-400">Europa • Latinoamérica • Asia</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="contacto" class="max-w-3xl mx-auto px-5 py-20">
-    <div class="text-center mb-10">
+<!-- REDES SOCIALES PREMIUM -->
+<section id="redes" class="bg-zinc-900 py-20 border-y border-white/10">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+        <span class="text-rose-400 text-sm font-semibold tracking-[2px]">CONÉCTATE CONMIGO</span>
+        <h2 class="text-5xl font-bold heading-serif mt-3 mb-4">Mis redes</h2>
+        <p class="max-w-md mx-auto text-zinc-400 mb-12">Sígueme para contenido exclusivo, behind the scenes y momentos que no comparto en ningún otro lugar.</p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+            <a href="https://www.instagram.com/roxyrose_fy" target="_blank" class="glass rounded-3xl p-8 flex flex-col items-center hover:scale-[1.02] transition-all group">
+                <i class="fa-brands fa-instagram text-6xl mb-5 text-rose-400 group-hover:scale-110 transition-transform"></i>
+                <div class="text-3xl font-bold">124.8k</div>
+                <div class="text-sm text-zinc-400">Instagram</div>
+            </a>
+            <a href="https://www.tiktok.com/@roxyrose_fy" target="_blank" class="glass rounded-3xl p-8 flex flex-col items-center hover:scale-[1.02] transition-all group">
+                <i class="fa-brands fa-tiktok text-6xl mb-5 group-hover:scale-110 transition-transform"></i>
+                <div class="text-3xl font-bold">89.4k</div>
+                <div class="text-sm text-zinc-400">TikTok</div>
+            </a>
+            <a href="https://www.facebook.com/roxyrose.fy" target="_blank" class="glass rounded-3xl p-8 flex flex-col items-center hover:scale-[1.02] transition-all group">
+                <i class="fa-brands fa-facebook-f text-6xl mb-5 text-blue-500 group-hover:scale-110 transition-transform"></i>
+                <div class="text-3xl font-bold">47.2k</div>
+                <div class="text-sm text-zinc-400">Facebook</div>
+            </a>
+            <a href="https://paypal.me/roxyrosefy" target="_blank" class="glass rounded-3xl p-8 flex flex-col items-center hover:scale-[1.02] transition-all group">
+                <i class="fa-brands fa-paypal text-6xl mb-5 text-blue-400 group-hover:scale-110 transition-transform"></i>
+                <div class="text-3xl font-bold">Apóyame</div>
+                <div class="text-sm text-zinc-400">PayPal</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- GALERÍA CON FILTROS -->
+<section id="galeria" class="max-w-7xl mx-auto px-6 py-24">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-10">
+        <div>
+            <span class="text-rose-400 text-sm font-semibold tracking-[2px]">PORTAFOLIO VISUAL</span>
+            <h2 class="text-5xl font-bold heading-serif mt-2">Mi mundo en imágenes</h2>
+        </div>
+        
+        <div class="flex flex-wrap gap-2 mt-6 md:mt-0" id="gallery-filters">
+            <button class="filter-btn active px-5 py-2 rounded-3xl border border-white/30 text-sm" data-filter="all">Todo</button>
+            <button class="filter-btn px-5 py-2 rounded-3xl border border-white/30 text-sm" data-filter="nature">Naturaleza</button>
+            <button class="filter-btn px-5 py-2 rounded-3xl border border-white/30 text-sm" data-filter="studio">Estudio</button>
+            <button class="filter-btn px-5 py-2 rounded-3xl border border-white/30 text-sm" data-filter="travel">Viajes</button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="gallery-grid">
+        <!-- JS inserts images -->
+    </div>
+</section>
+
+<!-- SERVICIOS PREMIUM -->
+<section id="servicios" class="bg-zinc-900 py-24 border-y border-white/10">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <span class="text-rose-400 text-sm font-semibold tracking-[2px]">EXPERIENCIAS EXCLUSIVAS</span>
+            <h2 class="text-5xl font-bold heading-serif mt-3">¿Qué puedo crear contigo?</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="service-card glass rounded-3xl p-9 border border-white/10">
+                <i class="fa-solid fa-camera text-4xl text-rose-400 mb-6"></i>
+                <h3 class="text-3xl font-semibold mb-4">Sesiones Privadas</h3>
+                <p class="text-zinc-400 mb-6">Shoots exclusivos en locaciones increíbles con edición premium y entrega en 48 horas.</p>
+                <div class="text-sm text-rose-400 font-medium">Desde $850 USD</div>
+            </div>
+
+            <div class="service-card glass rounded-3xl p-9 border border-white/10">
+                <i class="fa-solid fa-video text-4xl text-rose-400 mb-6"></i>
+                <h3 class="text-3xl font-semibold mb-4">Contenido Personalizado</h3>
+                <p class="text-zinc-400 mb-6">Videos y fotos hechos a tu medida. Fantasías, roleplay, contenido temático… tú eliges.</p>
+                <div class="text-sm text-rose-400 font-medium">Desde $450 USD</div>
+            </div>
+
+            <div class="service-card glass rounded-3xl p-9 border border-white/10">
+                <i class="fa-solid fa-globe text-4xl text-rose-400 mb-6"></i>
+                <h3 class="text-3xl font-semibold mb-4">Colaboraciones & Eventos</h3>
+                <p class="text-zinc-400 mb-6">Apariciones en eventos, campañas de marca, brand deals y colaboraciones creativas.</p>
+                <div class="text-sm text-rose-400 font-medium">Cotización personalizada</div>
+            </div>
+
+            <div class="service-card glass rounded-3xl p-9 border border-white/10">
+                <i class="fa-solid fa-heart text-4xl text-rose-400 mb-6"></i>
+                <h3 class="text-3xl font-semibold mb-4">Experiencia VIP</h3>
+                <p class="text-zinc-400 mb-6">Acceso prioritario, chats privados, contenido behind-the-scenes y experiencias únicas.</p>
+                <div class="text-sm text-rose-400 font-medium">Membresía mensual</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COLABORACIONES -->
+<section class="max-w-5xl mx-auto px-6 py-24">
+    <div class="text-center mb-16">
+        <span class="text-rose-400 text-sm font-semibold tracking-[2px]">CONFIANZA DE MARCAS</span>
+        <h2 class="text-5xl font-bold heading-serif mt-3">Han confiado en mí</h2>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-80">
+        <div class="text-center">
+            <div class="text-2xl font-semibold">Lingerie Luxe</div>
+            <div class="text-xs text-zinc-500">Campaña 2025</div>
+        </div>
+        <div class="text-center">
+            <div class="text-2xl font-semibold">Vogue España</div>
+            <div class="text-xs text-zinc-500">Editorial 2024</div>
+        </div>
+        <div class="text-center">
+            <div class="text-2xl font-semibold">OnlyFans Official</div>
+            <div class="text-xs text-zinc-500">Colaboración 2025</div>
+        </div>
+        <div class="text-center">
+            <div class="text-2xl font-semibold">Calvin Klein</div>
+            <div class="text-xs text-zinc-500">Campaña Verano 2025</div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="max-w-3xl mx-auto px-6 py-24">
+    <div class="text-center mb-12">
         <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]">HABLEMOS</span>
-        <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-2">¿Lista para crear algo increíble?</h2>
+        <h2 class="text-5xl font-bold heading-serif mt-2">¿Lista para crear algo increíble?</h2>
     </div>
-    <form onsubmit="event.preventDefault(); alert('¡Mensaje enviado! Te responderé pronto 💌'); this.reset();" class="space-y-5">
+
+    <form onsubmit="event.preventDefault(); alert('¡Mensaje enviado! Te responderé pronto 💌'); this.reset();" class="space-y-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <input type="text" placeholder="Tu nombre" class="w-full bg-zinc-900 border border-white/20 rounded-2xl px-5 py-3.5 focus:outline-none focus:border-rose-400">
-            <input type="email" placeholder="Tu email" class="w-full bg-zinc-900 border border-white/20 rounded-2xl px-5 py-3.5 focus:outline-none focus:border-rose-400">
+            <input type="text" placeholder="Tu nombre" class="w-full bg-zinc-900 border border-white/20 rounded-2xl px-5 py-4 focus:outline-none focus:border-rose-400">
+            <input type="email" placeholder="Tu email" class="w-full bg-zinc-900 border border-white/20 rounded-2xl px-5 py-4 focus:outline-none focus:border-rose-400">
         </div>
-        <textarea placeholder="Cuéntame más..." rows="5" class="w-full bg-zinc-900 border border-white/20 rounded-3xl px-5 py-4 focus:outline-none focus:border-rose-400 resize-y"></textarea>
+        <textarea placeholder="Cuéntame más..." rows="6" class="w-full bg-zinc-900 border border-white/20 rounded-3xl px-5 py-4 focus:outline-none focus:border-rose-400 resize-y"></textarea>
         <button type="submit" class="w-full py-4 bg-gradient-to-r from-rose-500 to-pink-600 font-semibold text-lg rounded-3xl hover:brightness-110 transition">
             Enviar mensaje
         </button>
     </form>
 </section>
 
-<footer class="bg-black border-t border-white/10 py-12 text-center text-sm text-zinc-500">
-    <div class="max-w-4xl mx-auto px-5">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+<footer class="bg-black border-t border-white/10 py-14 text-center text-sm text-zinc-500">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
             <div>
                 © 2026 Roxyrose • Todos los derechos reservados
             </div>
-            <div class="flex gap-6 text-xs">
+            <div class="flex gap-8 text-xs">
                 <a href="politica-de-privacidad.html" class="hover:text-white transition">Política de Privacidad</a>
                 <a href="terminos-y-condiciones.html" class="hover:text-white transition">Términos y Condiciones</a>
             </div>
         </div>
-        <div class="text-[10px] text-zinc-500">
+        <div class="text-[10px] text-zinc-500 max-w-md mx-auto">
             Este sitio es solo para fines informativos y de portafolio. Todo el contenido es propiedad de Roxyrose.
         </div>
     </div>
 </footer>
 
-<div id="lightbox" onclick="if(event.target.id==='lightbox') this.classList.add('hidden')" class="hidden fixed inset-0 z-[9999] bg-black/85 backdrop-blur-xl items-center justify-center">
+<!-- FLOATING CONNECT BUTTON -->
+<div class="fixed bottom-8 right-6 z-[9990]">
+    <button onclick="document.getElementById('redes').scrollIntoView({behavior:'smooth'})" 
+            class="flex items-center gap-3 px-6 py-3.5 bg-white text-zinc-950 font-semibold rounded-3xl shadow-xl hover:bg-zinc-100 transition-all">
+        <span>Conectar</span>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    </button>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="if(event.target.id==='lightbox') this.classList.add('hidden')" class="hidden fixed inset-0 z-[9999] bg-black/90 backdrop-blur-xl items-center justify-center">
     <div class="relative max-w-[92vw] max-h-[88vh]">
         <button onclick="document.getElementById('lightbox').classList.add('hidden')" class="absolute -top-4 -right-4 w-9 h-9 bg-white/10 hover:bg-rose-500 rounded-full flex items-center justify-center text-white text-xl">
             <i class="fa-solid fa-times"></i>
@@ -210,7 +344,7 @@
     let W, H, p = [];
     function r() { W = c.width = window.innerWidth; H = c.height = window.innerHeight; }
     window.addEventListener('resize', r); r();
-    for (let i = 0; i < 65; i++) p.push({ x: Math.random()*W, y: Math.random()*H, r: Math.random()*1.7+0.9, vx: (Math.random()-0.5)*0.7, vy: (Math.random()-0.5)*0.7, pink: Math.random() > 0.55 });
+    for (let i = 0; i < 70; i++) p.push({ x: Math.random()*W, y: Math.random()*H, r: Math.random()*1.8+0.8, vx: (Math.random()-0.5)*0.6, vy: (Math.random()-0.5)*0.6, pink: Math.random() > 0.55 });
     function d() {
         ctx.clearRect(0,0,W,H);
         p.forEach(o => {
@@ -220,7 +354,7 @@
             ctx.save();
             ctx.globalAlpha = 0.35 + Math.sin(Date.now()*0.004 + o.x)*0.45;
             ctx.shadowColor = o.pink ? '#f43f5e' : '#fff';
-            ctx.shadowBlur = o.pink ? 15 : 9;
+            ctx.shadowBlur = o.pink ? 16 : 10;
             ctx.fillStyle = o.pink ? '#f43f5e' : '#fff';
             ctx.beginPath(); ctx.arc(o.x, o.y, o.r, 0, Math.PI*2); ctx.fill();
             ctx.restore();
@@ -230,38 +364,53 @@
     d();
 })();
 
-// CARRUSEL + MINIATURAS
-const imgs = ['assets/images/grok_image_1780159867735.jpg','assets/images/IMG_20260528_044159.jpg','assets/images/IMG_20260528_044147.jpg','assets/images/IMG_20260528_044112.jpg','assets/images/IMG_20260528_044124.jpg','assets/images/IMG_20260528_044056.jpg'];
-let current = 0;
+// GALERÍA CON FILTROS
+const galleryItems = [
+    { src: 'assets/images/grok_image_1780159867735.jpg', category: 'nature' },
+    { src: 'assets/images/IMG_20260528_044159.jpg', category: 'studio' },
+    { src: 'assets/images/IMG_20260528_044147.jpg', category: 'travel' },
+    { src: 'assets/images/IMG_20260528_044112.jpg', category: 'nature' },
+    { src: 'assets/images/IMG_20260528_044124.jpg', category: 'studio' },
+    { src: 'assets/images/IMG_20260528_044056.jpg', category: 'travel' }
+];
 
 function initGallery() {
-    const slides = document.getElementById('carousel-slides');
-    const thumbs = document.getElementById('thumbnails');
-    if (!slides || !thumbs) return;
+    const grid = document.getElementById('gallery-grid');
+    const filters = document.getElementById('gallery-filters');
+    if (!grid || !filters) return;
 
-    imgs.forEach((src, i) => {
-        const div = document.createElement('div');
-        div.className = 'min-w-full h-full flex-shrink-0 relative';
-        div.innerHTML = `<img src="${src}" class="w-full h-full object-cover" style="filter: blur(3px) brightness(0.85); transition: filter 0.5s, transform 0.5s;">`;
-        div.onclick = () => openLightbox(src);
-        slides.appendChild(div);
+    function renderGallery(filter = 'all') {
+        grid.innerHTML = '';
+        const filtered = filter === 'all' ? galleryItems : galleryItems.filter(item => item.category === filter);
 
-        const thumb = document.createElement('div');
-        thumb.className = `thumbnail ${i === 0 ? 'active' : ''}`;
-        thumb.innerHTML = `<img src="${src}" alt="Miniatura ${i+1}">`;
-        thumb.onclick = () => { current = i; updateCarousel(); };
-        thumbs.appendChild(thumb);
-    });
-
-    function updateCarousel() {
-        slides.style.transform = `translateX(-${current * 100}%)`;
-        thumbs.querySelectorAll('.thumbnail').forEach((t, i) => t.classList.toggle('active', i === current));
+        filtered.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'relative overflow-hidden rounded-3xl group cursor-pointer aspect-[4/3]';
+            div.innerHTML = `
+                <img src="${item.src}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/60"></div>
+                <div class="absolute bottom-4 left-4 text-white text-sm font-medium opacity-90">${item.category.toUpperCase()}</div>
+            `;
+            div.onclick = () => openLightbox(item.src);
+            grid.appendChild(div);
+        });
     }
 
-    setInterval(() => { current = (current + 1) % imgs.length; updateCarousel(); }, 4500);
+    renderGallery();
+
+    filters.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            filters.querySelectorAll('button').forEach(b => b.classList.remove('active', 'bg-rose-500', 'border-rose-500'));
+            btn.classList.add('active', 'bg-rose-500', 'border-rose-500');
+            renderGallery(btn.dataset.filter);
+        });
+    });
 }
 
-window.onload = initGallery;
+window.onload = function() {
+    initGallery();
+    console.log('%c[Roxyrose] Versión Premium C cargada', 'color:#f43f5e');
+};
 
 function openLightbox(src) {
     document.getElementById('lb-img').src = src;
