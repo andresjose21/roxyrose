@@ -84,9 +84,34 @@
             transform: translate(-42%, -48%);
             z-index: 2;
         }
+
+        .inapp-banner {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #18181b;
+            border-bottom: 1px solid #27272a;
+            z-index: 99999;
+            padding: 12px 16px;
+            text-align: center;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body class="bg-zinc-950 text-white">
+
+<!-- Banner para detectar navegador de Instagram/Facebook -->
+<div id="inapp-banner" class="inapp-banner">
+    <div class="flex items-center justify-center gap-3 text-sm">
+        <span>Para mejor experiencia, abre en tu navegador</span>
+        <button onclick="window.open(window.location.href, '_blank'); document.getElementById('inapp-banner').style.display='none';" 
+                class="px-4 py-1 bg-white text-zinc-950 text-xs font-semibold rounded-2xl">
+            Abrir en navegador
+        </button>
+    </div>
+</div>
 
 <canvas id="particles-canvas"></canvas>
 
@@ -242,6 +267,19 @@
 </div>
 
 <script>
+// Detectar si se abre dentro de Instagram o Facebook
+(function() {
+    const ua = navigator.userAgent;
+    const isInApp = ua.includes('Instagram') || ua.includes('FBAN') || ua.includes('FBAV') || ua.includes('FB_IAB');
+    
+    if (isInApp) {
+        const banner = document.getElementById('inapp-banner');
+        if (banner) {
+            banner.style.display = 'block';
+        }
+    }
+})();
+
 // PARTÍCULAS
 (function() {
     const c = document.getElementById('particles-canvas');
