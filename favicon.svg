@@ -1,0 +1,10 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo circular -->
+  <circle cx="32" cy="32" r="30" fill="#18181b" stroke="#27272a" stroke-width="2"/>
+  
+  <!-- Primera R (blanca) -->
+  <text x="20" y="44" font-family="Playfair Display, Georgia, serif" font-size="32" font-weight="700" fill="#ffffff" letter-spacing="-2">R</text>
+  
+  <!-- Segunda R (rosada) -->
+  <text x="32" y="44" font-family="Playfair Display, Georgia, serif" font-size="32" font-weight="700" fill="#f43f5e" letter-spacing="-2">R</text>
+</svg>
