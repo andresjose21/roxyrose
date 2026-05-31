@@ -3,7 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roxyrose • Modelo</title>
+    <title>Roxyrose • Modelo Oficial</title>
+
+    <!-- Meta para compartir en redes (Meta/Facebook/Instagram) - SEGURO -->
+    <meta property="og:title" content="Roxyrose • Modelo Oficial">
+    <meta property="og:description" content="Explora el portafolio visual de Roxyrose, modelo y creadora de contenido. Sesiones exclusivas, colaboraciones y contenido premium.">
+    <meta property="og:image" content="https://roxyrosefy.github.io/mysocials/assets/images/grok_image_1780159867735.jpg">
+    <meta property="og:url" content="https://roxyrosefy.github.io/mysocials">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Roxyrose">
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Roxyrose • Modelo Oficial">
+    <meta name="twitter:description" content="Portafolio visual de Roxyrose. Sesiones exclusivas y contenido premium.">
+    <meta name="twitter:image" content="https://roxyrosefy.github.io/mysocials/assets/images/grok_image_1780159867735.jpg">
+
+    <!-- Meta adicional para seguridad -->
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Portafolio oficial de Roxyrose, modelo y creadora de contenido. Descubre sesiones exclusivas y colaboraciones.">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -23,21 +42,11 @@
 
         .hero-title { font-size: clamp(52px, 11vw, 105px); line-height: 0.92; }
 
-        .thumbnail {
-            width: 68px; height: 68px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
+        .thumbnail { width: 68px; height: 68px; border-radius: 12px; overflow: hidden; border: 2px solid transparent; transition: all 0.3s ease; cursor: pointer; flex-shrink: 0; }
         .thumbnail.active { border-color: #f43f5e; transform: scale(1.05); }
         .thumbnail img { width: 100%; height: 100%; object-fit: cover; }
 
-        @media (min-width: 768px) {
-            .thumbnail { width: 82px; height: 82px; }
-        }
+        @media (min-width: 768px) { .thumbnail { width: 82px; height: 82px; } }
     </style>
 </head>
 <body class="bg-zinc-950 text-white">
@@ -103,27 +112,23 @@
     </div>
 </header>
 
-<!-- GALERÍA RESPONSIVE -->
 <section id="galeria" class="max-w-6xl mx-auto px-5 py-20">
     <div class="text-center mb-10">
         <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]">PORTAFOLIO VISUAL</span>
         <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-2">Mi mundo en imágenes</h2>
     </div>
 
-    <!-- Carrusel principal -->
     <div class="relative max-w-[620px] md:max-w-3xl lg:max-w-4xl mx-auto mb-6">
         <div id="carousel-container" class="relative h-[520px] md:h-[620px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
             <div id="carousel-slides" class="flex h-full transition-transform duration-700 ease-out"></div>
         </div>
     </div>
 
-    <!-- Miniaturas -->
     <div class="flex gap-3 overflow-x-auto pb-4 max-w-[620px] md:max-w-3xl lg:max-w-4xl mx-auto hide-scrollbar">
         <div id="thumbnails" class="flex gap-3"></div>
     </div>
 </section>
 
-<!-- SERVICIOS -->
 <section id="servicios" class="bg-zinc-900 py-20 border-y border-white/10">
     <div class="max-w-6xl mx-auto px-5">
         <div class="text-center mb-12">
@@ -155,7 +160,6 @@
     </div>
 </section>
 
-<!-- CONTACTO -->
 <section id="contacto" class="max-w-3xl mx-auto px-5 py-20">
     <div class="text-center mb-10">
         <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]">HABLEMOS</span>
