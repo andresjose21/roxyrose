@@ -242,43 +242,6 @@
 </div>
 
 <script>
-// === SISTEMA TAPMYSOCIALS STYLE - FORZAR NAVEGADOR EXTERNO ===
-(function() {
-    const ua = navigator.userAgent.toLowerCase();
-    const isInstagram = ua.includes('instagram');
-    const isFacebook = ua.includes('fban') || ua.includes('fbav') || ua.includes('fb_iab');
-    
-    if (isInstagram || isFacebook) {
-        // Detectado navegador interno de Instagram/Facebook
-        // Forzar apertura en navegador externo (esto activa el popup nativo de Instagram)
-        setTimeout(function() {
-            const currentUrl = window.location.href;
-            
-            // Intentar abrir en nueva pestaña (esto activa el diálogo nativo)
-            const newTab = window.open(currentUrl, '_blank');
-            
-            if (newTab) {
-                // Si se abrió, cerrar la pestaña actual después de un momento
-                setTimeout(function() {
-                    window.close();
-                }, 800);
-            } else {
-                // Si el navegador bloqueó el popup, mostrar instrucción
-                const banner = document.createElement('div');
-                banner.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#18181b;border:1px solid #27272a;color:white;padding:12px 20px;border-radius:9999px;font-size:13px;z-index:99999;display:flex;align-items:center;gap:12px;box-shadow:0 10px 30px rgba(0,0,0,0.3)';
-                banner.innerHTML = `
-                    <span>Abre en tu navegador para mejor experiencia</span>
-                    <button onclick="window.open('${currentUrl}', '_blank'); this.parentElement.remove();" 
-                            style="background:white;color:#18181b;border:none;padding:6px 14px;border-radius:9999px;font-size:12px;font-weight:600;cursor:pointer">
-                        Abrir
-                    </button>
-                `;
-                document.body.appendChild(banner);
-            }
-        }, 600);
-    }
-})();
-
 // PARTÍCULAS
 (function() {
     const c = document.getElementById('particles-canvas');
