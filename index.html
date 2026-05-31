@@ -23,7 +23,6 @@
 
         .hero-title { font-size: clamp(52px, 11vw, 105px); line-height: 0.92; }
 
-        /* Miniaturas estilo Instagram */
         .thumbnail {
             width: 68px; height: 68px;
             border-radius: 12px;
@@ -33,14 +32,11 @@
             cursor: pointer;
             flex-shrink: 0;
         }
-        .thumbnail.active {
-            border-color: #f43f5e;
-            transform: scale(1.05);
-        }
-        .thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .thumbnail.active { border-color: #f43f5e; transform: scale(1.05); }
+        .thumbnail img { width: 100%; height: 100%; object-fit: cover; }
+
+        @media (min-width: 768px) {
+            .thumbnail { width: 82px; height: 82px; }
         }
     </style>
 </head>
@@ -76,7 +72,7 @@
     </video>
     <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/82 z-10"></div>
 
-    <div class="relative z-20 max-w-[620px] px-5 text-left" style="margin-left: 8%;">
+    <div class="relative z-20 max-w-3xl mx-auto px-6 text-center md:text-left">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-3xl bg-white/10 backdrop-blur-md mb-6 border border-white/20">
             <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
             <span class="text-sm font-medium tracking-[1.5px]">AHORA DISPONIBLE PARA COLABORACIONES</span>
@@ -96,7 +92,7 @@
         <p class="text-rose-400 font-semibold text-xl md:text-2xl mb-3">Energía juguetona y seductora</p>
         <p class="text-zinc-400 max-w-md text-sm md:text-base mb-8">Modelo y creadora de contenido que ama posar en la naturaleza, brillar con glamour y compartir su mundo contigo.</p>
 
-        <div class="flex flex-col sm:flex-row gap-3 max-w-[300px]">
+        <div class="flex flex-col sm:flex-row gap-3 max-w-[320px] mx-auto md:mx-0">
             <button onclick="document.getElementById('galeria').scrollIntoView({behavior:'smooth'})" class="flex-1 py-3.5 bg-white text-zinc-950 font-semibold rounded-3xl flex items-center justify-center gap-2 hover:bg-zinc-100 transition">
                 Explorar Galería <i class="fa-solid fa-images"></i>
             </button>
@@ -107,7 +103,7 @@
     </div>
 </header>
 
-<!-- GALERÍA CON CARRUSEL + MINIATURAS -->
+<!-- GALERÍA RESPONSIVE -->
 <section id="galeria" class="max-w-6xl mx-auto px-5 py-20">
     <div class="text-center mb-10">
         <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]">PORTAFOLIO VISUAL</span>
@@ -115,14 +111,14 @@
     </div>
 
     <!-- Carrusel principal -->
-    <div class="relative max-w-[620px] mx-auto mb-6">
+    <div class="relative max-w-[620px] md:max-w-3xl lg:max-w-4xl mx-auto mb-6">
         <div id="carousel-container" class="relative h-[520px] md:h-[620px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
             <div id="carousel-slides" class="flex h-full transition-transform duration-700 ease-out"></div>
         </div>
     </div>
 
-    <!-- Miniaturas estilo Instagram -->
-    <div class="flex gap-3 overflow-x-auto pb-4 max-w-[620px] mx-auto hide-scrollbar">
+    <!-- Miniaturas -->
+    <div class="flex gap-3 overflow-x-auto pb-4 max-w-[620px] md:max-w-3xl lg:max-w-4xl mx-auto hide-scrollbar">
         <div id="thumbnails" class="flex gap-3"></div>
     </div>
 </section>
@@ -181,7 +177,6 @@
     © 2026 Roxyrose • Todos los derechos reservados • Hecho con ❤️ para mis fans
 </footer>
 
-<!-- LIGHTBOX -->
 <div id="lightbox" onclick="if(event.target.id==='lightbox') this.classList.add('hidden')" class="hidden fixed inset-0 z-[9999] bg-black/85 backdrop-blur-xl items-center justify-center">
     <div class="relative max-w-[92vw] max-h-[88vh]">
         <button onclick="document.getElementById('lightbox').classList.add('hidden')" class="absolute -top-4 -right-4 w-9 h-9 bg-white/10 hover:bg-rose-500 rounded-full flex items-center justify-center text-white text-xl">
@@ -220,14 +215,7 @@
 })();
 
 // CARRUSEL + MINIATURAS
-const imgs = [
-    'assets/images/grok_image_1780159867735.jpg',
-    'assets/images/IMG_20260528_044159.jpg',
-    'assets/images/IMG_20260528_044147.jpg',
-    'assets/images/IMG_20260528_044112.jpg',
-    'assets/images/IMG_20260528_044124.jpg',
-    'assets/images/IMG_20260528_044056.jpg'
-];
+const imgs = ['assets/images/grok_image_1780159867735.jpg','assets/images/IMG_20260528_044159.jpg','assets/images/IMG_20260528_044147.jpg','assets/images/IMG_20260528_044112.jpg','assets/images/IMG_20260528_044124.jpg','assets/images/IMG_20260528_044056.jpg'];
 let current = 0;
 
 function initGallery() {
@@ -235,45 +223,29 @@ function initGallery() {
     const thumbs = document.getElementById('thumbnails');
     if (!slides || !thumbs) return;
 
-    // Crear slides del carrusel
     imgs.forEach((src, i) => {
         const div = document.createElement('div');
         div.className = 'min-w-full h-full flex-shrink-0 relative';
-        div.innerHTML = `<img src="${src}" class="w-full h-full object-cover" style="filter: blur(3px) brightness(0.85); transition: filter 0.5s, transform 0.5s;">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/40"></div>`;
+        div.innerHTML = `<img src="${src}" class="w-full h-full object-cover" style="filter: blur(3px) brightness(0.85); transition: filter 0.5s, transform 0.5s;">`;
         div.onclick = () => openLightbox(src);
         slides.appendChild(div);
 
-        // Miniatura
         const thumb = document.createElement('div');
         thumb.className = `thumbnail ${i === 0 ? 'active' : ''}`;
         thumb.innerHTML = `<img src="${src}" alt="Miniatura ${i+1}">`;
-        thumb.onclick = () => {
-            current = i;
-            updateCarousel();
-        };
+        thumb.onclick = () => { current = i; updateCarousel(); };
         thumbs.appendChild(thumb);
     });
 
     function updateCarousel() {
         slides.style.transform = `translateX(-${current * 100}%)`;
-        // Actualizar miniaturas activas
-        thumbs.querySelectorAll('.thumbnail').forEach((t, i) => {
-            t.classList.toggle('active', i === current);
-        });
+        thumbs.querySelectorAll('.thumbnail').forEach((t, i) => t.classList.toggle('active', i === current));
     }
 
-    // Auto slide
-    setInterval(() => {
-        current = (current + 1) % imgs.length;
-        updateCarousel();
-    }, 4500);
+    setInterval(() => { current = (current + 1) % imgs.length; updateCarousel(); }, 4500);
 }
 
-window.onload = function() {
-    initGallery();
-    console.log('%c[Roxyrose] Carrusel + miniaturas estilo Instagram listos', 'color:#f43f5e');
-};
+window.onload = initGallery;
 
 function openLightbox(src) {
     document.getElementById('lb-img').src = src;
