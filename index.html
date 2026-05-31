@@ -12,8 +12,8 @@
         .heading-serif { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; letter-spacing: -0.025em; }
         .rose-gradient { background: linear-gradient(135deg, #b76e79, #f43f5e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .social-circle {
-            width: 58px;
-            height: 58px;
+            width: 42px;
+            height: 42px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -23,9 +23,8 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .social-circle:hover {
-            transform: scale(1.15) translateY(-3px);
+            transform: scale(1.2);
             border-color: #f43f5e;
-            box-shadow: 0 10px 15px -3px rgb(244 63 94 / 0.2);
         }
         .social-circle.instagram { background: linear-gradient(135deg, #f43f5e, #c026d3); }
         .social-circle.facebook { background: #1877f2; }
@@ -54,7 +53,6 @@
                 <a href="#galeria" class="hover:text-rose-400 transition">Galería</a>
                 <a href="#servicios" class="hover:text-rose-400 transition">Servicios</a>
                 <a href="#contacto" class="hover:text-rose-400 transition">Contacto</a>
-                <a href="#redes" class="hover:text-rose-400 transition">Redes</a>
             </div>
             
             <button onclick="document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' })" 
@@ -64,30 +62,44 @@
         </div>
     </nav>
 
-    <!-- HERO -->
-    <header class="relative h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0" poster="assets/images/grok_image_1780159867735.jpg">
+    <!-- HERO (video full cover + redes debajo del nombre) -->
+    <header class="relative min-h-[100dvh] flex items-center justify-center pt-20 overflow-hidden">
+        <!-- VIDEO FULL COVER -->
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0" 
+               poster="assets/images/grok_image_1780159867735.jpg" style="object-position: center 30%;">
             <source src="assets/images/VID_20260503_000135.mp4" type="video/mp4">
             <img src="assets/images/grok_image_1780159867735.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Roxyrose">
         </video>
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70 z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80 z-10"></div>
 
-        <div class="relative z-30 max-w-4xl px-6 text-center pt-4">
+        <div class="relative z-30 max-w-2xl px-6 text-center">
+            <!-- BADGE -->
             <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl bg-white/10 backdrop-blur-md mb-6 border border-white/20">
                 <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
                 <span class="text-sm font-medium tracking-widest">AHORA DISPONIBLE PARA COLABORACIONES</span>
             </div>
             
-            <h1 class="text-6xl md:text-7xl font-bold tracking-tighter heading-serif mb-4">
+            <!-- NOMBRE -->
+            <h1 class="text-7xl md:text-8xl font-bold tracking-tighter heading-serif mb-1">
                 ROXY<span class="rose-gradient">ROSE</span>
             </h1>
             
-            <p class="max-w-lg mx-auto text-lg md:text-xl text-zinc-300 mb-8">
+            <!-- REDES SOCIALES JUSTO DEBAJO DEL NOMBRE (dentro del ancho del texto) -->
+            <div class="flex items-center justify-center gap-2.5 mb-6">
+                <a href="https://www.threads.net/@roxyrose_fy" target="_blank" class="social-circle threads"><i class="fa-brands fa-threads text-white text-xl"></i></a>
+                <a href="https://www.instagram.com/roxyrose_fy" target="_blank" class="social-circle instagram"><i class="fa-brands fa-instagram text-white text-xl"></i></a>
+                <a href="https://www.facebook.com/roxyrose.fy" target="_blank" class="social-circle facebook"><i class="fa-brands fa-facebook-f text-white text-xl"></i></a>
+                <a href="https://paypal.me/roxyrosefy" target="_blank" class="social-circle paypal"><i class="fa-brands fa-paypal text-white text-xl"></i></a>
+                <a href="https://www.tiktok.com/@roxyrose_fy" target="_blank" class="social-circle tiktok"><i class="fa-brands fa-tiktok text-white text-xl"></i></a>
+                <a href="https://linktr.ee/roxyrose_fy" target="_blank" class="social-circle linkme"><span class="text-white font-bold text-lg">me</span></a>
+            </div>
+
+            <p class="max-w-lg mx-auto text-lg md:text-xl text-zinc-300 mb-3">
                 Cabello rosa ondulado • Pecas naturales • Curvas que enamoran<br>
                 <span class="text-rose-400 font-semibold">Energía juguetona y seductora</span>
             </p>
             
-            <p class="max-w-md mx-auto text-zinc-400 text-sm mb-10">
+            <p class="max-w-md mx-auto text-zinc-400 text-sm mb-8">
                 Modelo y creadora de contenido que ama posar en la naturaleza, brillar con glamour y compartir su mundo contigo. 
                 ¡Explora mis fotos y videos reales!
             </p>
@@ -106,8 +118,8 @@
             </div>
         </div>
 
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center z-30">
-            <span class="text-[10px] tracking-[2px] mb-1.5 text-zinc-400">SCROLL PARA DESCUBRIR</span>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-30">
+            <span class="text-[10px] tracking-[2px] mb-1 text-zinc-400">SCROLL PARA DESCUBRIR</span>
             <i class="fa-solid fa-chevron-down text-xl animate-bounce text-rose-400"></i>
         </div>
     </header>
@@ -196,54 +208,6 @@
         </form>
     </section>
 
-    <!-- REDES SOCIALES (estilo solicitado) -->
-    <section id="redes" class="max-w-md mx-auto px-6 py-16 text-center">
-        <div class="flex flex-col items-center">
-            <h2 class="text-6xl font-bold heading-serif tracking-tighter">Roxy Rose</h2>
-            <p class="text-2xl text-zinc-400 mt-2 font-light">@roxyrose_fy</p>
-            
-            <div class="flex items-center justify-center gap-3 mt-10">
-                <!-- Threads -->
-                <a href="https://www.threads.net/@roxyrose_fy" target="_blank" 
-                   class="social-circle threads">
-                    <i class="fa-brands fa-threads text-white text-3xl"></i>
-                </a>
-                
-                <!-- Instagram -->
-                <a href="https://www.instagram.com/roxyrose_fy" target="_blank" 
-                   class="social-circle instagram">
-                    <i class="fa-brands fa-instagram text-white text-3xl"></i>
-                </a>
-                
-                <!-- Facebook -->
-                <a href="https://www.facebook.com/roxyrose.fy" target="_blank" 
-                   class="social-circle facebook">
-                    <i class="fa-brands fa-facebook-f text-white text-3xl"></i>
-                </a>
-                
-                <!-- PayPal -->
-                <a href="https://paypal.me/roxyrosefy" target="_blank" 
-                   class="social-circle paypal">
-                    <i class="fa-brands fa-paypal text-white text-3xl"></i>
-                </a>
-                
-                <!-- TikTok -->
-                <a href="https://www.tiktok.com/@roxyrose_fy" target="_blank" 
-                   class="social-circle tiktok">
-                    <i class="fa-brands fa-tiktok text-white text-3xl"></i>
-                </a>
-                
-                <!-- Link.me / me -->
-                <a href="https://linktr.ee/roxyrose_fy" target="_blank" 
-                   class="social-circle linkme">
-                    <span class="text-white font-bold text-xl tracking-widest">me</span>
-                </a>
-            </div>
-            
-            <p class="text-xs text-zinc-500 mt-8">Haz clic en los íconos para seguirme • Contenido exclusivo en todas mis plataformas</p>
-        </div>
-    </section>
-
     <footer class="bg-black border-t border-white/10 py-12 text-center text-sm text-zinc-500">
         © 2026 Roxyrose • Todos los derechos reservados • Hecho con ❤️ para mis fans
     </footer>
@@ -280,7 +244,7 @@
         
         window.onload = function() {
             initCarousel();
-            console.log('%c[Roxyrose] Sección de redes actualizada al estilo solicitado', 'color:#b76e79');
+            console.log('%c[Roxyrose] Video full cover + redes debajo del nombre actualizado', 'color:#b76e79');
         }
     </script>
 </body>
