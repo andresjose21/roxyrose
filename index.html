@@ -250,6 +250,7 @@
         <input type="hidden" name="_subject" value="New message from Roxyrose website">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://roxyrosefy.github.io/mysocials/#contacto">
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <input type="text" name="name" placeholder="Your name" required class="w-full bg-zinc-900 border border-white/20 rounded-2xl px-5 py-3.5 focus:outline-none focus:border-rose-400" data-i18n-placeholder="form.name">
@@ -535,13 +536,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (form) {
         form.addEventListener('submit', function(e) {
             // Let FormSubmit handle the submission
-            // Show success message after a short delay (FormSubmit will process in background)
             setTimeout(() => {
                 if (successMsg) {
                     successMsg.style.display = 'block';
                     form.reset();
                     
-                    // Hide success message after 5 seconds
                     setTimeout(() => {
                         successMsg.style.display = 'none';
                     }, 5000);
