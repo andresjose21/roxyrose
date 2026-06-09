@@ -84,6 +84,21 @@
             transform: translate(-42%, -48%);
             z-index: 2;
         }
+
+        .lang-select {
+            background: #18181b;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: white;
+            font-size: 13px;
+            padding: 6px 12px;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .lang-select:focus {
+            outline: none;
+            border-color: #f43f5e;
+        }
     </style>
 </head>
 <body class="bg-zinc-950 text-white">
@@ -102,12 +117,26 @@
                 <span class="text-[10px] text-rose-400 font-medium tracking-[2px] block -mt-0.5">MODELO • INFLUENCER</span>
             </div>
         </div>
-        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-            <a href="#galeria" class="hover:text-rose-400 transition">Galería</a>
-            <a href="#servicios" class="hover:text-rose-400 transition">Servicios</a>
-            <a href="#contacto" class="hover:text-rose-400 transition">Contacto</a>
+        
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+            <a href="#galeria" class="hover:text-rose-400 transition" data-i18n="nav.gallery">Gallery</a>
+            <a href="#servicios" class="hover:text-rose-400 transition" data-i18n="nav.services">Services</a>
+            <a href="#contacto" class="hover:text-rose-400 transition" data-i18n="nav.contact">Contact</a>
         </div>
-        <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})" class="px-5 py-2.5 bg-white text-zinc-950 font-semibold rounded-3xl text-sm hover:bg-zinc-100 transition">
+        
+        <!-- Language Switcher -->
+        <div class="flex items-center gap-3">
+            <select id="lang-select" class="lang-select">
+                <option value="en">🇬🇧 EN</option>
+                <option value="es">🇪🇸 ES</option>
+                <option value="it">🇮🇹 IT</option>
+                <option value="ru">🇷🇺 RU</option>
+                <option value="zh">🇨🇳 ZH</option>
+                <option value="pt">🇵🇹 PT</option>
+            </select>
+        </div>
+        
+        <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})" class="px-5 py-2.5 bg-white text-zinc-950 font-semibold rounded-3xl text-sm hover:bg-zinc-100 transition" data-i18n="nav.book">
             Book Now
         </button>
     </div>
@@ -122,30 +151,22 @@
     <div class="relative z-20 max-w-3xl mx-auto px-6 text-center md:text-left">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-3xl bg-white/10 backdrop-blur-md mb-6 border border-white/20">
             <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-            <span class="text-sm font-medium tracking-[1.5px]">AHORA DISPONIBLE PARA COLABORACIONES</span>
+            <span class="text-sm font-medium tracking-[1.5px]" data-i18n="hero.badge">NOW AVAILABLE FOR COLLABORATIONS</span>
         </div>
 
         <h1 class="hero-title heading-serif mb-4">
             ROXY<span class="rose-gradient">ROSE</span>
         </h1>
 
-        <div class="flex gap-3 mb-7 justify-center md:justify-start">
-            <!-- LINKS ACTUALIZADOS -->
-            <a href="https://www.instagram.com/roxyrose_fy" target="_blank" class="social-circle instagram"><i class="fa-brands fa-instagram text-white text-xl"></i></a>
-            <a href="https://www.facebook.com/share/1Er41Tu662/" target="_blank" class="social-circle facebook"><i class="fa-brands fa-facebook-f text-white text-xl"></i></a>
-            <a href="https://www.paypal.com/paypalme/roxyroseo" target="_blank" class="social-circle paypal"><i class="fa-brands fa-paypal text-white text-xl"></i></a>
-            <a href="https://www.tiktok.com/@roxyrose_fy" target="_blank" class="social-circle tiktok"><i class="fa-brands fa-tiktok text-white text-xl"></i></a>
-        </div>
-
-        <p class="text-rose-400 font-semibold text-xl md:text-2xl mb-3">Energía juguetona y seductora</p>
-        <p class="text-zinc-400 max-w-md text-sm md:text-base mb-8">Modelo y creadora de contenido que ama posar en la naturaleza, brillar con glamour y compartir su mundo contigo.</p>
+        <p class="text-rose-400 font-semibold text-xl md:text-2xl mb-3" data-i18n="hero.tagline">Playful energy and seductive soul. Content that captivates.</p>
+        <p class="text-zinc-400 max-w-md text-sm md:text-base mb-8" data-i18n="hero.description">Model and content creator who loves posing in nature, shining with glamour and sharing her world with you.</p>
 
         <div class="flex flex-col sm:flex-row gap-3 max-w-[320px] mx-auto md:mx-0">
-            <button onclick="document.getElementById('galeria').scrollIntoView({behavior:'smooth'})" class="flex-1 py-3.5 bg-white text-zinc-950 font-semibold rounded-3xl flex items-center justify-center gap-2 hover:bg-zinc-100 transition">
-                Explorar Galería <i class="fa-solid fa-images"></i>
+            <button onclick="document.getElementById('galeria').scrollIntoView({behavior:'smooth'})" class="flex-1 py-3.5 bg-white text-zinc-950 font-semibold rounded-3xl flex items-center justify-center gap-2 hover:bg-zinc-100 transition" data-i18n="hero.explore">
+                Explore Gallery <i class="fa-solid fa-images"></i>
             </button>
-            <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})" class="flex-1 py-3.5 border border-white/40 hover:bg-white/5 font-semibold rounded-3xl transition">
-                Conectar
+            <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})" class="flex-1 py-3.5 border border-white/40 hover:bg-white/5 font-semibold rounded-3xl transition" data-i18n="hero.connect">
+                Connect
             </button>
         </div>
     </div>
@@ -153,8 +174,8 @@
 
 <section id="galeria" class="max-w-6xl mx-auto px-5 py-20">
     <div class="text-center mb-10">
-        <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]">PORTAFOLIO VISUAL</span>
-        <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-2">Mi mundo en imágenes</h2>
+        <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]" data-i18n="gallery.tag">VISUAL PORTFOLIO</span>
+        <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-2" data-i18n="gallery.title">My world in images</h2>
     </div>
 
     <div class="relative max-w-[620px] md:max-w-3xl lg:max-w-4xl mx-auto mb-6">
@@ -171,29 +192,29 @@
 <section id="servicios" class="bg-zinc-900 py-20 border-y border-white/10">
     <div class="max-w-6xl mx-auto px-5">
         <div class="text-center mb-12">
-            <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]">EXPERIENCIAS EXCLUSIVAS</span>
-            <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-2">¿Qué puedo hacer por ti?</h2>
+            <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]" data-i18n="services.tag">EXCLUSIVE EXPERIENCES</span>
+            <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-2" data-i18n="services.title">What can I create with you?</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             <div class="bg-zinc-950 p-7 rounded-3xl border border-white/10">
                 <i class="fa-solid fa-camera text-rose-400 text-3xl mb-4"></i>
-                <h4 class="font-semibold text-xl mb-2">Sesiones de Fotos Privadas</h4>
-                <p class="text-zinc-400">Shoots exclusivos en locaciones increíbles con edición premium.</p>
+                <h4 class="font-semibold text-xl mb-2" data-i18n="services.private.title">Private Photo Sessions</h4>
+                <p class="text-zinc-400" data-i18n="services.private.desc">Exclusive shoots in incredible locations with premium editing.</p>
             </div>
             <div class="bg-zinc-950 p-7 rounded-3xl border border-white/10">
                 <i class="fa-solid fa-video text-rose-400 text-3xl mb-4"></i>
-                <h4 class="font-semibold text-xl mb-2">Contenido Personalizado</h4>
-                <p class="text-zinc-400">Videos y fotos hechos a tu medida. ¡Dime tu fantasía!</p>
+                <h4 class="font-semibold text-xl mb-2" data-i18n="services.custom.title">Custom Content</h4>
+                <p class="text-zinc-400" data-i18n="services.custom.desc">Videos and photos made to your specifications. Fantasies, roleplay, themed content… you choose.</p>
             </div>
             <div class="bg-zinc-950 p-7 rounded-3xl border border-white/10">
                 <i class="fa-solid fa-globe text-rose-400 text-3xl mb-4"></i>
-                <h4 class="font-semibold text-xl mb-2">Colaboraciones & Eventos</h4>
-                <p class="text-zinc-400">Apariciones en eventos, campañas y brand deals.</p>
+                <h4 class="font-semibold text-xl mb-2" data-i18n="services.collab.title">Collaborations & Events</h4>
+                <p class="text-zinc-400" data-i18n="services.collab.desc">Appearances at events, brand campaigns, and creative collaborations.</p>
             </div>
             <div class="bg-zinc-950 p-7 rounded-3xl border border-white/10">
                 <i class="fa-solid fa-heart text-rose-400 text-3xl mb-4"></i>
-                <h4 class="font-semibold text-xl mb-2">Experiencias VIP</h4>
-                <p class="text-zinc-400">Acceso prioritario, chats privados y contenido behind-the-scenes.</p>
+                <h4 class="font-semibold text-xl mb-2" data-i18n="services.vip.title">VIP Experience</h4>
+                <p class="text-zinc-400" data-i18n="services.vip.desc">Priority access, private chats, behind-the-scenes content and unique experiences.</p>
             </div>
         </div>
     </div>
@@ -201,17 +222,17 @@
 
 <section id="contacto" class="max-w-3xl mx-auto px-5 py-20">
     <div class="text-center mb-10">
-        <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]">HABLEMOS</span>
-        <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-2">¿Lista para crear algo increíble?</h2>
+        <span class="text-rose-400 text-sm font-semibold tracking-[1.5px]" data-i18n="contact.tag">LET'S TALK</span>
+        <h2 class="text-4xl md:text-5xl font-bold heading-serif mt-2" data-i18n="contact.title">Ready to create something incredible?</h2>
     </div>
-    <form onsubmit="event.preventDefault(); alert('¡Mensaje enviado! Te responderé pronto 💌'); this.reset();" class="space-y-5">
+    <form onsubmit="event.preventDefault(); alert('Message sent! I will reply soon 💌'); this.reset();" class="space-y-5">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <input type="text" placeholder="Tu nombre" class="w-full bg-zinc-900 border border-white/20 rounded-2xl px-5 py-3.5 focus:outline-none focus:border-rose-400">
-            <input type="email" placeholder="Tu email" class="w-full bg-zinc-900 border border-white/20 rounded-2xl px-5 py-3.5 focus:outline-none focus:border-rose-400">
+            <input type="text" placeholder="Your name" class="w-full bg-zinc-900 border border-white/20 rounded-2xl px-5 py-3.5 focus:outline-none focus:border-rose-400" data-i18n-placeholder="form.name">
+            <input type="email" placeholder="Your email" class="w-full bg-zinc-900 border border-white/20 rounded-2xl px-5 py-3.5 focus:outline-none focus:border-rose-400" data-i18n-placeholder="form.email">
         </div>
-        <textarea placeholder="Cuéntame más..." rows="5" class="w-full bg-zinc-900 border border-white/20 rounded-3xl px-5 py-4 focus:outline-none focus:border-rose-400 resize-y"></textarea>
-        <button type="submit" class="w-full py-4 bg-gradient-to-r from-rose-500 to-pink-600 font-semibold text-lg rounded-3xl hover:brightness-110 transition">
-            Enviar mensaje
+        <textarea placeholder="Tell me more..." rows="5" class="w-full bg-zinc-900 border border-white/20 rounded-3xl px-5 py-4 focus:outline-none focus:border-rose-400 resize-y" data-i18n-placeholder="form.message"></textarea>
+        <button type="submit" class="w-full py-4 bg-gradient-to-r from-rose-500 to-pink-600 font-semibold text-lg rounded-3xl hover:brightness-110 transition" data-i18n="form.submit">
+            Send message
         </button>
     </form>
 </section>
@@ -219,16 +240,16 @@
 <footer class="bg-black border-t border-white/10 py-12 text-center text-sm text-zinc-500">
     <div class="max-w-4xl mx-auto px-5">
         <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
-            <div>
-                © 2026 Roxyrose • Todos los derechos reservados
+            <div data-i18n="footer.copyright">
+                © 2026 Roxyrose • All rights reserved
             </div>
             <div class="flex gap-6 text-xs">
-                <a href="politica-de-privacidad.html" class="hover:text-white transition">Política de Privacidad</a>
-                <a href="terminos-y-condiciones.html" class="hover:text-white transition">Términos y Condiciones</a>
+                <a href="politica-de-privacidad.html" class="hover:text-white transition" data-i18n="footer.privacy">Privacy Policy</a>
+                <a href="terminos-y-condiciones.html" class="hover:text-white transition" data-i18n="footer.terms">Terms and Conditions</a>
             </div>
         </div>
-        <div class="text-[10px] text-zinc-500">
-            Este sitio es solo para fines informativos y de portafolio. Todo el contenido es propiedad de Roxyrose.
+        <div class="text-[10px] text-zinc-500" data-i18n="footer.disclaimer">
+            This site is for informational and portfolio purposes only. All content is property of Roxyrose.
         </div>
     </div>
 </footer>
@@ -243,6 +264,247 @@
 </div>
 
 <script>
+// === MULTILINGUAL SYSTEM ===
+const translations = {
+    en: {
+        "nav.gallery": "Gallery",
+        "nav.services": "Services",
+        "nav.contact": "Contact",
+        "nav.book": "Book Now",
+        "hero.badge": "NOW AVAILABLE FOR COLLABORATIONS",
+        "hero.tagline": "Playful energy and seductive soul. Content that captivates.",
+        "hero.description": "Model and content creator who loves posing in nature, shining with glamour and sharing her world with you.",
+        "hero.explore": "Explore Gallery",
+        "hero.connect": "Connect",
+        "gallery.tag": "VISUAL PORTFOLIO",
+        "gallery.title": "My world in images",
+        "services.tag": "EXCLUSIVE EXPERIENCES",
+        "services.title": "What can I create with you?",
+        "services.private.title": "Private Photo Sessions",
+        "services.private.desc": "Exclusive shoots in incredible locations with premium editing.",
+        "services.custom.title": "Custom Content",
+        "services.custom.desc": "Videos and photos made to your specifications. Fantasies, roleplay, themed content… you choose.",
+        "services.collab.title": "Collaborations & Events",
+        "services.collab.desc": "Appearances at events, brand campaigns, and creative collaborations.",
+        "services.vip.title": "VIP Experience",
+        "services.vip.desc": "Priority access, private chats, behind-the-scenes content and unique experiences.",
+        "contact.tag": "LET'S TALK",
+        "contact.title": "Ready to create something incredible?",
+        "form.name": "Your name",
+        "form.email": "Your email",
+        "form.message": "Tell me more...",
+        "form.submit": "Send message",
+        "footer.copyright": "© 2026 Roxyrose • All rights reserved",
+        "footer.privacy": "Privacy Policy",
+        "footer.terms": "Terms and Conditions",
+        "footer.disclaimer": "This site is for informational and portfolio purposes only. All content is property of Roxyrose."
+    },
+    es: {
+        "nav.gallery": "Galería",
+        "nav.services": "Servicios",
+        "nav.contact": "Contacto",
+        "nav.book": "Reservar Ahora",
+        "hero.badge": "AHORA DISPONIBLE PARA COLABORACIONES",
+        "hero.tagline": "Energía juguetona y alma seductora. Contenido que cautiva.",
+        "hero.description": "Modelo y creadora de contenido que ama posar en la naturaleza, brillar con glamour y compartir su mundo contigo.",
+        "hero.explore": "Explorar Galería",
+        "hero.connect": "Conectar",
+        "gallery.tag": "PORTAFOLIO VISUAL",
+        "gallery.title": "Mi mundo en imágenes",
+        "services.tag": "EXPERIENCIAS EXCLUSIVAS",
+        "services.title": "¿Qué puedo crear contigo?",
+        "services.private.title": "Sesiones de Fotos Privadas",
+        "services.private.desc": "Shoots exclusivos en locaciones increíbles con edición premium.",
+        "services.custom.title": "Contenido Personalizado",
+        "services.custom.desc": "Videos y fotos hechos a tu medida. Fantasías, roleplay, contenido temático… tú eliges.",
+        "services.collab.title": "Colaboraciones & Eventos",
+        "services.collab.desc": "Apariciones en eventos, campañas de marca y colaboraciones creativas.",
+        "services.vip.title": "Experiencia VIP",
+        "services.vip.desc": "Acceso prioritario, chats privados, contenido behind-the-scenes y experiencias únicas.",
+        "contact.tag": "HABLEMOS",
+        "contact.title": "¿Lista para crear algo increíble?",
+        "form.name": "Tu nombre",
+        "form.email": "Tu email",
+        "form.message": "Cuéntame más...",
+        "form.submit": "Enviar mensaje",
+        "footer.copyright": "© 2026 Roxyrose • Todos los derechos reservados",
+        "footer.privacy": "Política de Privacidad",
+        "footer.terms": "Términos y Condiciones",
+        "footer.disclaimer": "Este sitio es solo para fines informativos y de portafolio. Todo el contenido es propiedad de Roxyrose."
+    },
+    it: {
+        "nav.gallery": "Galleria",
+        "nav.services": "Servizi",
+        "nav.contact": "Contatto",
+        "nav.book": "Prenota Ora",
+        "hero.badge": "ORA DISPONIBILE PER COLLABORAZIONI",
+        "hero.tagline": "Energia giocosa e anima seducente. Contenuti che affascinano.",
+        "hero.description": "Modella e creatrice di contenuti che ama posare nella natura, brillare con glamour e condividere il suo mondo con te.",
+        "hero.explore": "Esplora Galleria",
+        "hero.connect": "Connettiti",
+        "gallery.tag": "PORTAFOGLIO VISIVO",
+        "gallery.title": "Il mio mondo in immagini",
+        "services.tag": "ESPERIENZE ESCLUSIVE",
+        "services.title": "Cosa posso creare con te?",
+        "services.private.title": "Sessioni Foto Private",
+        "services.private.desc": "Shooting esclusivi in location incredibili con editing premium.",
+        "services.custom.title": "Contenuti Personalizzati",
+        "services.custom.desc": "Video e foto fatti su misura. Fantasie, roleplay, contenuti a tema… scegli tu.",
+        "services.collab.title": "Collaborazioni & Eventi",
+        "services.collab.desc": "Apparizioni a eventi, campagne brand e collaborazioni creative.",
+        "services.vip.title": "Esperienza VIP",
+        "services.vip.desc": "Accesso prioritario, chat private, contenuti behind-the-scenes ed esperienze uniche.",
+        "contact.tag": "PARLIAMONE",
+        "contact.title": "Pronta a creare qualcosa di incredibile?",
+        "form.name": "Il tuo nome",
+        "form.email": "La tua email",
+        "form.message": "Dimmi di più...",
+        "form.submit": "Invia messaggio",
+        "footer.copyright": "© 2026 Roxyrose • Tutti i diritti riservati",
+        "footer.privacy": "Informativa sulla Privacy",
+        "footer.terms": "Termini e Condizioni",
+        "footer.disclaimer": "Questo sito è solo a scopo informativo e di portafoglio. Tutto il contenuto è proprietà di Roxyrose."
+    },
+    ru: {
+        "nav.gallery": "Галерея",
+        "nav.services": "Услуги",
+        "nav.contact": "Контакт",
+        "nav.book": "Забронировать",
+        "hero.badge": "ТЕПЕРЬ ДОСТУПНО ДЛЯ КОЛЛАБОРАЦИЙ",
+        "hero.tagline": "Игривая энергия и соблазнительная душа. Контент, который завораживает.",
+        "hero.description": "Модель и создатель контента, которая любит позировать на природе, сиять гламуром и делиться своим миром с тобой.",
+        "hero.explore": "Исследовать Галерею",
+        "hero.connect": "Связаться",
+        "gallery.tag": "ВИЗУАЛЬНОЕ ПОРТФОЛИО",
+        "gallery.title": "Мой мир в изображениях",
+        "services.tag": "ЭКСКЛЮЗИВНЫЕ ОПЫТЫ",
+        "services.title": "Что я могу создать с тобой?",
+        "services.private.title": "Приватные Фотосессии",
+        "services.private.desc": "Эксклюзивные съемки в невероятных локациях с премиум-редактированием.",
+        "services.custom.title": "Индивидуальный Контент",
+        "services.custom.desc": "Видео и фото, сделанные по твоему желанию. Фантазии, ролевые игры, тематический контент… выбирай.",
+        "services.collab.title": "Коллаборации и События",
+        "services.collab.desc": "Появления на мероприятиях, брендовые кампании и творческие коллаборации.",
+        "services.vip.title": "VIP-Опыт",
+        "services.vip.desc": "Приоритетный доступ, приватные чаты, контент за кадром и уникальные впечатления.",
+        "contact.tag": "ДАВАЙТЕ ПОГОВОРИМ",
+        "contact.title": "Готова создать что-то невероятное?",
+        "form.name": "Ваше имя",
+        "form.email": "Ваш email",
+        "form.message": "Расскажите больше...",
+        "form.submit": "Отправить сообщение",
+        "footer.copyright": "© 2026 Roxyrose • Все права защищены",
+        "footer.privacy": "Политика конфиденциальности",
+        "footer.terms": "Условия и положения",
+        "footer.disclaimer": "Этот сайт предназначен только для информационных целей и портфолио. Весь контент является собственностью Roxyrose."
+    },
+    zh: {
+        "nav.gallery": "画廊",
+        "nav.services": "服务",
+        "nav.contact": "联系",
+        "nav.book": "立即预订",
+        "hero.badge": "现已开放合作",
+        "hero.tagline": "俏皮的能量与诱人的灵魂。令人着迷的内容。",
+        "hero.description": "喜欢在自然中摆姿势、以魅力闪耀并与你分享她的世界的模特和内容创作者。",
+        "hero.explore": "探索画廊",
+        "hero.connect": "联系",
+        "gallery.tag": "视觉作品集",
+        "gallery.title": "我的世界在图像中",
+        "services.tag": "独家体验",
+        "services.title": "我能为你创造什么？",
+        "services.private.title": "私人摄影会",
+        "services.private.desc": "在令人惊叹的地点进行独家拍摄，并提供优质编辑。",
+        "services.custom.title": "定制内容",
+        "services.custom.desc": "根据你的要求制作的视频和照片。幻想、角色扮演、主题内容……由你选择。",
+        "services.collab.title": "合作与活动",
+        "services.collab.desc": "活动出镜、品牌活动和创意合作。",
+        "services.vip.title": "VIP体验",
+        "services.vip.desc": "优先访问、私人聊天、幕后内容和独特体验。",
+        "contact.tag": "让我们聊聊",
+        "contact.title": "准备好创造一些不可思议的东西了吗？",
+        "form.name": "你的名字",
+        "form.email": "你的邮箱",
+        "form.message": "告诉我更多...",
+        "form.submit": "发送消息",
+        "footer.copyright": "© 2026 Roxyrose • 版权所有",
+        "footer.privacy": "隐私政策",
+        "footer.terms": "条款和条件",
+        "footer.disclaimer": "本网站仅供信息和作品集用途。所有内容均为Roxyrose的财产。"
+    },
+    pt: {
+        "nav.gallery": "Galeria",
+        "nav.services": "Serviços",
+        "nav.contact": "Contato",
+        "nav.book": "Reservar Agora",
+        "hero.badge": "AGORA DISPONÍVEL PARA COLABORAÇÕES",
+        "hero.tagline": "Energia brincalhona e alma sedutora. Conteúdo que cativa.",
+        "hero.description": "Modelo e criadora de conteúdo que ama posar na natureza, brilhar com glamour e compartilhar seu mundo com você.",
+        "hero.explore": "Explorar Galeria",
+        "hero.connect": "Conectar",
+        "gallery.tag": "PORTFÓLIO VISUAL",
+        "gallery.title": "Meu mundo em imagens",
+        "services.tag": "EXPERIÊNCIAS EXCLUSIVAS",
+        "services.title": "O que posso criar com você?",
+        "services.private.title": "Sessões de Fotos Privadas",
+        "services.private.desc": "Shoots exclusivos em locais incríveis com edição premium.",
+        "services.custom.title": "Conteúdo Personalizado",
+        "services.custom.desc": "Vídeos e fotos feitos sob medida. Fantasias, roleplay, conteúdo temático… você escolhe.",
+        "services.collab.title": "Colaborações & Eventos",
+        "services.collab.desc": "Aparições em eventos, campanhas de marca e colaborações criativas.",
+        "services.vip.title": "Experiência VIP",
+        "services.vip.desc": "Acesso prioritário, chats privados, conteúdo behind-the-scenes e experiências únicas.",
+        "contact.tag": "VAMOS FALAR",
+        "contact.title": "Pronta para criar algo incrível?",
+        "form.name": "Seu nome",
+        "form.email": "Seu email",
+        "form.message": "Me conte mais...",
+        "form.submit": "Enviar mensagem",
+        "footer.copyright": "© 2026 Roxyrose • Todos os direitos reservados",
+        "footer.privacy": "Política de Privacidade",
+        "footer.terms": "Termos e Condições",
+        "footer.disclaimer": "Este site é apenas para fins informativos e de portfólio. Todo o conteúdo é propriedade de Roxyrose."
+    }
+};
+
+// Apply translations
+function applyTranslations(lang) {
+    // Update all elements with data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            el.textContent = translations[lang][key];
+        }
+    });
+    
+    // Update placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+            el.placeholder = translations[lang][key];
+        }
+    });
+    
+    // Save preference
+    localStorage.setItem('preferredLang', lang);
+}
+
+// Language switcher
+ document.addEventListener('DOMContentLoaded', function() {
+    const select = document.getElementById('lang-select');
+    
+    // Load saved language or default to English
+    const savedLang = localStorage.getItem('preferredLang') || 'en';
+    select.value = savedLang;
+    
+    // Apply initial translations
+    applyTranslations(savedLang);
+    
+    // Listen for changes
+    select.addEventListener('change', function() {
+        applyTranslations(this.value);
+    });
+});
+
 // PARTÍCULAS
 (function() {
     const c = document.getElementById('particles-canvas');
